@@ -1,60 +1,58 @@
 import React from "react";
 import RegisterImage from "../assets/registrationimage.png";
 import Heading from "../Component/Heading";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { FcGoogle } from "react-icons/fc";
+import TextField from "@mui/material/TextField";
 
-function Register() {
+function SignIn() {
   return (
     <section>
       <div className="flex gap-x-18">
         <div className="w-1/2 flex justify-end items-center h-screen">
           <div className="w-[500px]">
-            <Heading text="Get started with easily register" />
+            <Heading text="Login to your account!" />
 
-            <p className="text-xl font-nunito font-normal text-black/50 mt-3 mb-10">
-              Free register and you can enjoy it
-            </p>
-
-            <div className="flex flex-col        gap-y-8 w-[380px]">
+            <Button
+              sx={{
+                color: "#03014C",
+                textTransform: "capitalize",
+                fontWeight: "semibold",
+                fontSize: "13px",
+                padding: "15px 58px",
+                marginTop: "32px",
+              }}
+              variant="outlined"
+              startIcon={<FcGoogle />}
+            >
+              Login with Google
+            </Button>
+            <div className="flex flex-col  mt-8      gap-y-8 w-[380px]">
               <TextField
-                id="outlined-basic"
-                label="Email Address"
-                variant="outlined"
                 sx={{
-                  "& .MuiOutlinedInput-root.Mui-focused fieldset": {
-                    borderColor: "gray",
+                  "& .MuiInput-underline:after": {
+                    borderBottomColor: "#03014c80",
                   },
                   "& .MuiInputLabel-root.Mui-focused": {
-                    color: "gray",
+                    color: "#03014c80",
                   },
                 }}
+                id="standard-basic"
+                label="Email Addres"
+                variant="standard"
               />
               <TextField
-                id="outlined-basic"
-                label="Full name"
-                variant="outlined"
                 sx={{
-                  "& .MuiOutlinedInput-root.Mui-focused fieldset": {
-                    borderColor: "gray",
+                  "& .MuiInput-underline:after": {
+                    borderBottomColor: "#03014c80",
                   },
                   "& .MuiInputLabel-root.Mui-focused": {
-                    color: "gray",
+                    color: "#03014c80",
                   },
                 }}
-              />
-              <TextField
-                id="outlined-basic"
+                id="standard-basic"
                 label="Password"
-                variant="outlined"
-                sx={{
-                  "& .MuiOutlinedInput-root.Mui-focused fieldset": {
-                    borderColor: "gray",
-                  },
-                  "& .MuiInputLabel-root.Mui-focused": {
-                    color: "gray",
-                  },
-                }}
+                variant="standard"
               />
 
               <Button
@@ -67,12 +65,12 @@ function Register() {
                 }}
                 variant="contained"
               >
-                Contained
+                Login to Continue
               </Button>
 
               <p className="text-center font-sans text-sm text-[#03014C]">
-                Already have an account ?{" "}
-                <span className="text-[#EA6C00]">Sign In</span>
+                Don’t have an account ?{" "}
+                <span className="text-[#EA6C00]">Sign up</span>
               </p>
             </div>
           </div>
@@ -89,4 +87,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default SignIn;

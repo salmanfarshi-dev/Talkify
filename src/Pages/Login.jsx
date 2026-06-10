@@ -1,8 +1,9 @@
-import React from 'react'
+import React from "react";
+import SignIn from "../Layout/SignIn";
 
 function Login() {
   return (
-    <div>Login</div>
+   <SignIn/>
   )
 }
 
