@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import RegisterImage from "../assets/registration.jpg"
+import RegisterImage from "../assets/registration.jpg";
 import Heading from "../Component/Heading";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -19,15 +19,27 @@ function Register() {
 
             <div className="flex flex-col        gap-y-8 w-[380px]">
               <TextField
-                id="outlined-basic"
                 label="Email Address"
                 variant="outlined"
-                sx={{
+               sx={{
+                  
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: "8.6px",
+                  },
+                  "& .MuiOutlinedInput-root fieldset": {
+                    borderColor: "#11175d4d",
+                    
+                  },
+                  "& .MuiOutlinedInput-root:hover fieldset": {
+                    borderColor: "#11175d4d",
+                  },
                   "& .MuiOutlinedInput-root.Mui-focused fieldset": {
-                    borderColor: "gray",
+                    borderColor: "#11175d4d",
+                  
                   },
                   "& .MuiInputLabel-root.Mui-focused": {
-                    color: "gray",
+                     color:"#11175db3",
+                    
                   },
                 }}
               />
@@ -36,24 +48,50 @@ function Register() {
                 label="Full name"
                 variant="outlined"
                 sx={{
+                  
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: "8.6px",
+                  },
+                  "& .MuiOutlinedInput-root fieldset": {
+                    borderColor: "#11175d4d",
+                    
+                  },
+                  "& .MuiOutlinedInput-root:hover fieldset": {
+                    borderColor: "#11175d4d",
+                  },
                   "& .MuiOutlinedInput-root.Mui-focused fieldset": {
-                    borderColor: "gray",
+                    borderColor: "#11175d4d",
+                  
                   },
                   "& .MuiInputLabel-root.Mui-focused": {
-                    color: "gray",
+                     color:"#11175db3",
+                    
                   },
                 }}
               />
               <TextField
-                id="outlined-basic"
+                type="password"
                 label="Password"
                 variant="outlined"
                 sx={{
+                  
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: "8.6px",
+                  },
+                  "& .MuiOutlinedInput-root fieldset": {
+                    borderColor: "#11175d4d",
+                    
+                  },
+                  "& .MuiOutlinedInput-root:hover fieldset": {
+                    borderColor: "#11175d4d",
+                  },
                   "& .MuiOutlinedInput-root.Mui-focused fieldset": {
-                    borderColor: "gray",
+                    borderColor: "#11175d4d",
+                  
                   },
                   "& .MuiInputLabel-root.Mui-focused": {
-                    color: "gray",
+                     color:"#11175db3",
+                    
                   },
                 }}
               />
@@ -74,7 +112,7 @@ function Register() {
               <p className="text-center font-sans text-sm text-[#03014C]">
                 Already have an account ?{" "}
                 <Link to="/login">
-                <span className="text-[#EA6C00]">Sign In</span>
+                  <span className="text-[#EA6C00]">Sign In</span>
                 </Link>
               </p>
             </div>

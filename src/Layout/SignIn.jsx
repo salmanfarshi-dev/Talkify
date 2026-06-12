@@ -15,6 +15,7 @@ function SignIn() {
             <Heading text="Login to your account!" />
 
             <Button
+          
               sx={{
                 color: "#03014C",
                 textTransform: "capitalize",
@@ -22,7 +23,11 @@ function SignIn() {
                 fontSize: "13px",
                 padding: "15px 58px",
                 marginTop: "32px",
+                fontFamily: "sans-serif",
+                fontWidth: "600",
+                border:"1px solid #11175d4d "
               }}
+              
               variant="outlined"
               startIcon={<FcGoogle />}
             >
@@ -54,6 +59,7 @@ function SignIn() {
                 id="standard-basic"
                 label="Password"
                 variant="standard"
+                type="password"
               />
 
               <Button
@@ -61,6 +67,7 @@ function SignIn() {
                   borderRadius: "86px",
                   fontWeight: "semibold",
                   fontSize: "20px",
+                  background:"",
                   textTransform: "capitalize",
                   padding: "15px 0 ",
                 }}
