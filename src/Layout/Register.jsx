@@ -1,5 +1,6 @@
 import React from "react";
-import RegisterImage from "../assets/registrationimage.png";
+import { Link } from "react-router-dom";
+import RegisterImage from "../assets/registration.jpg"
 import Heading from "../Component/Heading";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -72,7 +73,9 @@ function Register() {
 
               <p className="text-center font-sans text-sm text-[#03014C]">
                 Already have an account ?{" "}
+                <Link to="/login">
                 <span className="text-[#EA6C00]">Sign In</span>
+                </Link>
               </p>
             </div>
           </div>

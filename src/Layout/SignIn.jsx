@@ -1,5 +1,6 @@
 import React from "react";
-import RegisterImage from "../assets/registrationimage.png";
+import { Link } from "react-router-dom";
+import LoginImage from '../assets/login.jpg'
 import Heading from "../Component/Heading";
 import Button from "@mui/material/Button";
 import { FcGoogle } from "react-icons/fc";
@@ -70,14 +71,14 @@ function SignIn() {
 
               <p className="text-center font-sans text-sm text-[#03014C]">
                 Don’t have an account ?{" "}
-                <span className="text-[#EA6C00]">Sign up</span>
+               <Link to="/"> <span className="text-[#EA6C00] cursor-pointer">Sign up</span></Link>
               </p>
             </div>
           </div>
         </div>
         <div className="w-1/2">
           <img
-            src={RegisterImage}
+            src={LoginImage}
             alt=""
             className="w-full h-screen object-cover"
           />
