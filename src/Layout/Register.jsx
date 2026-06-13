@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import RegisterImage from "../assets/registration.jpg";
 import Heading from "../Component/Heading";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { VscEye } from "react-icons/vsc";
+import { VscEyeClosed } from "react-icons/vsc";
+
 
 function Register() {
+
+  let [show, setShow] = useState(false)
+
+
+const handleeye=()=>{
+  setShow(!show)
+}
+
   return (
     <section>
       <div className="flex gap-x-18">
@@ -69,11 +80,13 @@ function Register() {
                   },
                 }}
               />
-              <TextField
-                type="password"
+              <div className="relative w-full">
+                <TextField
+                type={show? "text" : "password"}
                 label="Password"
                 variant="outlined"
                 sx={{
+                  width:"100%",
                   
                   "& .MuiOutlinedInput-root": {
                     borderRadius: "8.6px",
@@ -96,8 +109,22 @@ function Register() {
                 }}
               />
 
+              <div onClick={handleeye} className="absolute top-1/2 -translate-y-1/2 right-4 cursor-pointer">
+
+              {
+                show ? 
+                <VscEye />
+                :
+                <VscEyeClosed />
+                
+              }
+
+              </div>
+              </div>
+
               <Button
                 sx={{
+                  background:"#FF6B6B",
                   borderRadius: "86px",
                   fontWeight: "semibold",
                   fontSize: "20px",

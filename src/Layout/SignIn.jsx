@@ -1,21 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import LoginImage from '../assets/login.jpg'
+import LoginImage from "../assets/login.jpg";
 import Heading from "../Component/Heading";
 import Button from "@mui/material/Button";
 import { FcGoogle } from "react-icons/fc";
 import TextField from "@mui/material/TextField";
+import { VscEye } from "react-icons/vsc";
+import { VscEyeClosed } from "react-icons/vsc";
 
 function SignIn() {
+  let [show, setShow] = useState(false);
+
+  const handleeye = () => {
+    setShow(!show);
+  };
+
   return (
     <section>
       <div className="flex gap-x-18">
-        <div className="w-1/2 flex justify-end items-center h-screen">
+        <div className="w-1/2">
+          <img
+            src={LoginImage}
+            alt=""
+            className="w-full h-screen object-cover"
+          />
+        </div>
+        <div className="w-1/2 flex justify-center items-center h-screen">
           <div className="w-[500px]">
             <Heading text="Login to your account!" />
 
             <Button
-          
               sx={{
                 color: "#03014C",
                 textTransform: "capitalize",
@@ -25,9 +39,8 @@ function SignIn() {
                 marginTop: "32px",
                 fontFamily: "sans-serif",
                 fontWidth: "600",
-                border:"1px solid #11175d4d "
+                border: "1px solid #11175d4d ",
               }}
-              
               variant="outlined"
               startIcon={<FcGoogle />}
             >
@@ -47,27 +60,40 @@ function SignIn() {
                 label="Email Addres"
                 variant="standard"
               />
-              <TextField
-                sx={{
-                  "& .MuiInput-underline:after": {
-                    borderBottomColor: "#03014c80",
-                  },
-                  "& .MuiInputLabel-root.Mui-focused": {
-                    color: "#03014c80",
-                  },
-                }}
-                id="standard-basic"
-                label="Password"
-                variant="standard"
-                type="password"
-              />
+              <div className=" relative">
+                <TextField
+                  sx={{
+                    "& .MuiOutlinedInput-root:hover fieldset": {
+                      borderColor: "red",
+                    },
+                    "& .MuiInput-underline:after": {
+                      borderBottomColor: "#03014c80",
+                    },
+                    "& .MuiInputLabel-root.Mui-focused": {
+                      color: "#03014c80",
+                    },
+                    width: "100%",
+                  }}
+                  id="standard-basic"
+                  label="Password"
+                  variant="standard"
+                  type={show ? "text" : "password"}
+                />
+
+                <div
+                  onClick={handleeye}
+                  className="absolute top-1/2 cursor-pointer right-4"
+                >
+                  {show ? <VscEye /> : <VscEyeClosed />}
+                </div>
+              </div>
 
               <Button
                 sx={{
+                  background: "#FF6B6B",
                   borderRadius: "86px",
                   fontWeight: "semibold",
                   fontSize: "20px",
-                  background:"",
                   textTransform: "capitalize",
                   padding: "15px 0 ",
                 }}
@@ -78,17 +104,13 @@ function SignIn() {
 
               <p className="text-center font-sans text-sm text-[#03014C]">
                 Don’t have an account ?{" "}
-               <Link to="/"> <span className="text-[#EA6C00] cursor-pointer">Sign up</span></Link>
+                <Link to="/">
+                  {" "}
+                  <span className="text-[#EA6C00] cursor-pointer">Sign up</span>
+                </Link>
               </p>
             </div>
           </div>
-        </div>
-        <div className="w-1/2">
-          <img
-            src={LoginImage}
-            alt=""
-            className="w-full h-screen object-cover"
-          />
         </div>
       </div>
     </section>
