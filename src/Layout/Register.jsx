@@ -25,18 +25,28 @@ const handleeye=()=>{
 
 const handleemail=(e)=>{
   setEmail(e.target.value)
+  setEmailError("")
 }
 const handlename=(e)=>{
   setName(e.target.value)
+  setNameError("")
 }
 const handlepassword=(e)=>{
   setPassword(e.target.value)
+  setPasswordError("")
 }
 
 const handlesignup=()=>{
-  console.log(name)
-  console.log(email)
-  console.log(password)
+  if(!email){
+    setEmailError("Please fill out this field")
+  }
+  if(!name){
+    setNameError("Please fill out this field")
+  }
+  if(!password){
+    setPasswordError("Please fill out this field")
+  }
+
 }
 
 
@@ -52,12 +62,14 @@ const handlesignup=()=>{
             </p>
 
             <div className="flex flex-col        gap-y-8 w-[380px]">
-              <TextField
+             <div className="">
+               <TextField
               value={email}
               onChange={handleemail}
                 label="Email Address"
                 variant="outlined"
                sx={{
+                width:"100%",
                   
                   "& .MuiOutlinedInput-root": {
                     borderRadius: "8.6px",
@@ -79,13 +91,20 @@ const handlesignup=()=>{
                   },
                 }}
               />
-              <TextField
+             {
+              emailerror &&  <p className="text-red-400 mt-1">{emailerror}</p>
+             }
+             </div>
+              
+             <div className="">
+               <TextField
               value={name}
               onChange={handlename}
                 id="outlined-basic"
                 label="Full name"
                 variant="outlined"
                 sx={{
+                  width:"100%",
                   
                   "& .MuiOutlinedInput-root": {
                     borderRadius: "8.6px",
@@ -107,6 +126,10 @@ const handlesignup=()=>{
                   },
                 }}
               />
+                           {
+              nameerror &&  <p className="text-red-400 mt-1">{nameerror}</p>
+             }
+             </div>
               <div className="relative w-full">
                 <TextField
                 value={password}
@@ -149,7 +172,11 @@ const handlesignup=()=>{
               }
 
               </div>
+                           {
+              passworderror &&  <p className="text-red-400 mt-1">{passworderror}</p>
+             }
               </div>
+
 
               <Button
               onClick={handlesignup}
