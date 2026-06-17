@@ -11,11 +11,34 @@ import { VscEyeClosed } from "react-icons/vsc";
 function Register() {
 
   let [show, setShow] = useState(false)
+  let [email, setEmail] = useState("")
+  let [emailerror, setEmailError] = useState("")
+  let [name, setName] = useState("")
+  let [nameerror, setNameError] = useState("")
+  let [password, setPassword] = useState("")
+  let [passworderror, setPasswordError] = useState("")
 
 
 const handleeye=()=>{
   setShow(!show)
 }
+
+const handleemail=(e)=>{
+  setEmail(e.target.value)
+}
+const handlename=(e)=>{
+  setName(e.target.value)
+}
+const handlepassword=(e)=>{
+  setPassword(e.target.value)
+}
+
+const handlesignup=()=>{
+  console.log(name)
+  console.log(email)
+  console.log(password)
+}
+
 
   return (
     <section>
@@ -30,6 +53,8 @@ const handleeye=()=>{
 
             <div className="flex flex-col        gap-y-8 w-[380px]">
               <TextField
+              value={email}
+              onChange={handleemail}
                 label="Email Address"
                 variant="outlined"
                sx={{
@@ -55,6 +80,8 @@ const handleeye=()=>{
                 }}
               />
               <TextField
+              value={name}
+              onChange={handlename}
                 id="outlined-basic"
                 label="Full name"
                 variant="outlined"
@@ -82,6 +109,8 @@ const handleeye=()=>{
               />
               <div className="relative w-full">
                 <TextField
+                value={password}
+                onChange={handlepassword}
                 type={show? "text" : "password"}
                 label="Password"
                 variant="outlined"
@@ -123,6 +152,8 @@ const handleeye=()=>{
               </div>
 
               <Button
+              onClick={handlesignup}
+              
                 sx={{
                   background:"#FF6B6B",
                   borderRadius: "86px",
@@ -133,7 +164,7 @@ const handleeye=()=>{
                 }}
                 variant="contained"
               >
-                Contained
+               Sign up
               </Button>
 
               <p className="text-center font-sans text-sm text-[#03014C]">
