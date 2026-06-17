@@ -79,6 +79,7 @@ function SignIn() {
                   variant="standard"
                   type={show ? "text" : "password"}
                 />
+                
 
                 <div
                   onClick={handleeye}
@@ -87,6 +88,7 @@ function SignIn() {
                   {show ? <VscEye /> : <VscEyeClosed />}
                 </div>
               </div>
+              <p className="text-black/50 mt-1 text-end text-[14px] cursor-pointer">Forget Password</p>
 
               <Button
                 sx={{
