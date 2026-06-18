@@ -107,17 +107,18 @@ function Register() {
   return (
     <section>
       <div className="flex gap-x-18">
-        <div className="w-1/2 flex justify-end items-center h-screen">
-          <div className="w-[500px]">
+        <div className="md:w-1/2 w-full flex justify-end items-center h-screen">
+          <div className="flex flex-col  justify-center md:justify-start md:items-start items-center mx-auto md:w-[500px]">
             <Heading text="Get started with easily register" />
 
-            <p className="text-xl font-nunito font-normal text-black/50 mt-3 mb-10">
+            <p className=" text-sm md:text-xl font-nunito font-normal text-black/50 mt-3 mb-10">
               Free register and you can enjoy it
             </p>
 
-            <div className="flex flex-col        gap-y-8 w-[380px]">
+            <div className="flex flex-col        gap-y-6 w-[350px]">
               <div className="">
                 <TextField
+              
                   value={email}
                   onChange={handleemail}
                   label="Email Address"
@@ -132,6 +133,7 @@ function Register() {
                       borderColor: "#11175d4d",
                     },
                     "& .MuiOutlinedInput-root:hover fieldset": {
+                    
                       borderColor: "#11175d4d",
                     },
                     "& .MuiOutlinedInput-root.Mui-focused fieldset": {
@@ -143,7 +145,7 @@ function Register() {
                   }}
                 />
                 {emailerror && (
-                  <p className="text-red-400 mt-1">{emailerror}</p>
+                  <p className="text-red-400 text-sm md:text-[16px] mt-1">{emailerror}</p>
                 )}
               </div>
 
@@ -174,7 +176,7 @@ function Register() {
                     },
                   }}
                 />
-                {nameerror && <p className="text-red-400 mt-1">{nameerror}</p>}
+                {nameerror && <p className="text-red-400 text-sm md:text-[16px] mt-1">{nameerror}</p>}
               </div>
               <div className="relative w-full">
                 <TextField
@@ -211,7 +213,7 @@ function Register() {
                   {show ? <VscEye /> : <VscEyeClosed />}
                 </div>
                 {passworderror && (
-                  <p className="text-red-400 mt-1">{passworderror}</p>
+                  <p className="text-red-400 text-sm md:text-[16px] mt-1">{passworderror}</p>
                 )}
               </div>
 
@@ -234,9 +236,14 @@ function Register() {
                     background: "#FF6B6B",
                     borderRadius: "86px",
                     fontWeight: "semibold",
-                    fontSize: "20px",
+                    fontSize: {
+                      xs:"16px",
+                      md:"20px"
+                    },
                     textTransform: "capitalize",
-                    padding: "15px 0 ",
+                    py:{
+                      md:"15px"
+                    },
                   }}
                   variant="contained"
                 >
@@ -253,7 +260,7 @@ function Register() {
             </div>
           </div>
         </div>
-        <div className="w-1/2">
+        <div className="w-1/2 hidden md:block">
           <img
             src={RegisterImage}
             alt=""

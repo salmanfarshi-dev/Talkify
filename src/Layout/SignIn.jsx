@@ -7,12 +7,13 @@ import { FcGoogle } from "react-icons/fc";
 import TextField from "@mui/material/TextField";
 import { VscEye } from "react-icons/vsc";
 import { VscEyeClosed } from "react-icons/vsc";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { toast, ToastContainer } from "react-toastify";
 import { RotatingLines } from "react-loader-spinner";
 
 function SignIn() {
   const auth = getAuth();
+    const provider = new GoogleAuthProvider();
   const navigate = useNavigate();
 
   let [email, setEmail] = useState("");
@@ -22,6 +23,7 @@ function SignIn() {
   let [loader, setLoader] = useState(false);
 
   let [show, setShow] = useState(false);
+  let emialregex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const handleeye = () => {
     setShow(!show);
@@ -42,12 +44,14 @@ function SignIn() {
 
     if (!email) {
       setEmailError("Please fill out this field");
+    }else if (!emialregex.test(email)) {
+      setEmailError("Invalid Email");
     }
     if (!password) {
       setPasswordError("Please fill out this field");
     }
 
-    if (email && password) {
+    if (email && password && emialregex.test(email)) {
       setLoader(true);
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -80,26 +84,50 @@ function SignIn() {
     }
   };
 
+  const handlegoogle=()=>{
+    signInWithPopup(auth, provider)
+  .then((result) => {
+    navigate("/home")
+  }).catch((error) => {
+   
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    
+  });
+  }
+
   return (
     <section>
       <div className="flex gap-x-18">
-        <div className="w-1/2">
+        <div className="w-1/2 hidden md:block">
           <img
             src={LoginImage}
             alt=""
             className="w-full h-screen object-cover"
           />
         </div>
-        <div className="w-1/2 flex justify-center items-center h-screen">
-          <div className="w-[500px]">
+        <div className="w-full md:w-1/2 flex justify-center items-center h-screen">
+          <div className="md:w-[500px]">
             <Heading text="Login to your account!" />
 
             <Button
+            onClick={handlegoogle}
               sx={{
+                py:{
+                  xs:1.5,
+                  md:2
+                },
+                px:{
+                  xs:3
+                },
+                
                 color: "#03014C",
                 textTransform: "capitalize",
                 fontWeight: "semibold",
-                fontSize: "13px",
+                fontSize: {
+                  xs:"12px",
+                  md:"13px"
+                },
                 padding: "15px 58px",
                 marginTop: "32px",
                 fontFamily: "sans-serif",
@@ -138,6 +166,7 @@ function SignIn() {
                   onChange={handlepassword}
                   value={password}
                   sx={{
+                    
                     "& .MuiOutlinedInput-root:hover fieldset": {
                       borderColor: "red",
                     },
@@ -165,7 +194,7 @@ function SignIn() {
                   <p className="text-red-400 mt-1">{passworderror}</p>
                 )}
               </div>
-              <p className="text-black/50 mt-1 text-end text-[14px] cursor-pointer">
+              <p className="text-black/50 mt-1 text-end text-xs md:text-[14px] cursor-pointer">
                 Forget Password
               </p>
 
@@ -187,9 +216,15 @@ function SignIn() {
                     background: "#FF6B6B",
                     borderRadius: "86px",
                     fontWeight: "semibold",
-                    fontSize: "20px",
+                    fontSize: {
+                      xs:"16px",
+                      md:"20px"
+                    },
                     textTransform: "capitalize",
-                    padding: "15px 0 ",
+                    py:{
+                      xs:"12px",
+                      md:"15px"
+                    },
                   }}
                   variant="contained"
                   onClick={handlelogin}
