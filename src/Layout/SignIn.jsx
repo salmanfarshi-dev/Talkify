@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoginImage from "../assets/login.jpg";
 import Heading from "../Component/Heading";
 import Button from "@mui/material/Button";
@@ -7,12 +7,77 @@ import { FcGoogle } from "react-icons/fc";
 import TextField from "@mui/material/TextField";
 import { VscEye } from "react-icons/vsc";
 import { VscEyeClosed } from "react-icons/vsc";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { toast, ToastContainer } from "react-toastify";
+import { RotatingLines } from "react-loader-spinner";
 
 function SignIn() {
+  const auth = getAuth();
+  const navigate = useNavigate();
+
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
+  let [emailerror, setEmailError] = useState("");
+  let [passworderror, setPasswordError] = useState("");
+  let [loader, setLoader] = useState(false);
+
   let [show, setShow] = useState(false);
 
   const handleeye = () => {
     setShow(!show);
+  };
+
+  const handleemail = (e) => {
+    setEmail(e.target.value);
+    setEmailError("");
+  };
+
+  const handlepassword = (e) => {
+    setPassword(e.target.value);
+    setPasswordError("");
+  };
+
+  const handlelogin = (e) => {
+    e.preventDefault();
+
+    if (!email) {
+      setEmailError("Please fill out this field");
+    }
+    if (!password) {
+      setPasswordError("Please fill out this field");
+    }
+
+    if (email && password) {
+      setLoader(true);
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          console.log(userCredential);
+          if(userCredential.user.emailVerified){
+                      toast.success("Login successfully");
+
+          const user = userCredential.user;
+
+          setEmail("");
+          setPassword("");
+          navigate("/home");
+
+          setLoader(false);
+
+          }else{
+            toast.error("Please verified your email")
+            setLoader(false)
+          }
+
+
+        })
+        .catch((error) => {
+          setLoader(false);
+          const errorCode = error.code;
+          if (errorCode.includes("auth/invalid-credential")) {
+            toast.error("Invalid Credential");
+          }
+        });
+    }
   };
 
   return (
@@ -47,21 +112,31 @@ function SignIn() {
               Login with Google
             </Button>
             <div className="flex flex-col  mt-8      gap-y-8 w-[380px]">
-              <TextField
-                sx={{
-                  "& .MuiInput-underline:after": {
-                    borderBottomColor: "#03014c80",
-                  },
-                  "& .MuiInputLabel-root.Mui-focused": {
-                    color: "#03014c80",
-                  },
-                }}
-                id="standard-basic"
-                label="Email Addres"
-                variant="standard"
-              />
+              <div className="">
+                <TextField
+                  value={email}
+                  onChange={handleemail}
+                  sx={{
+                    width: "100%",
+                    "& .MuiInput-underline:after": {
+                      borderBottomColor: "#03014c80",
+                    },
+                    "& .MuiInputLabel-root.Mui-focused": {
+                      color: "#03014c80",
+                    },
+                  }}
+                  id="standard-basic"
+                  label="Email Addres"
+                  variant="standard"
+                />
+                {emailerror && (
+                  <p className="text-red-400 mt-1">{emailerror}</p>
+                )}
+              </div>
               <div className=" relative">
                 <TextField
+                  onChange={handlepassword}
+                  value={password}
                   sx={{
                     "& .MuiOutlinedInput-root:hover fieldset": {
                       borderColor: "red",
@@ -79,7 +154,6 @@ function SignIn() {
                   variant="standard"
                   type={show ? "text" : "password"}
                 />
-                
 
                 <div
                   onClick={handleeye}
@@ -87,22 +161,42 @@ function SignIn() {
                 >
                   {show ? <VscEye /> : <VscEyeClosed />}
                 </div>
+                {passworderror && (
+                  <p className="text-red-400 mt-1">{passworderror}</p>
+                )}
               </div>
-              <p className="text-black/50 mt-1 text-end text-[14px] cursor-pointer">Forget Password</p>
+              <p className="text-black/50 mt-1 text-end text-[14px] cursor-pointer">
+                Forget Password
+              </p>
 
-              <Button
-                sx={{
-                  background: "#FF6B6B",
-                  borderRadius: "86px",
-                  fontWeight: "semibold",
-                  fontSize: "20px",
-                  textTransform: "capitalize",
-                  padding: "15px 0 ",
-                }}
-                variant="contained"
-              >
-                Login to Continue
-              </Button>
+              {loader ? (
+                <RotatingLines
+                  visible={true}
+                  height="30"
+                  width="30"
+                  color="grey"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  ariaLabel="rotating-lines-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="flex justify-center "
+                />
+              ) : (
+                <Button
+                  sx={{
+                    background: "#FF6B6B",
+                    borderRadius: "86px",
+                    fontWeight: "semibold",
+                    fontSize: "20px",
+                    textTransform: "capitalize",
+                    padding: "15px 0 ",
+                  }}
+                  variant="contained"
+                  onClick={handlelogin}
+                >
+                  Login to Continue
+                </Button>
+              )}
 
               <p className="text-center font-sans text-sm text-[#03014C]">
                 Don’t have an account ?{" "}
@@ -115,6 +209,18 @@ function SignIn() {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </section>
   );
 }

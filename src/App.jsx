@@ -2,6 +2,7 @@ import React from 'react'
 import {createRoutesFromElements, createBrowserRouter, Route, RouterProvider } from "react-router-dom";
 import Registration from './Pages/Registration';
 import Login from './Pages/Login';
+import Home from './Pages/Home';
 
 
 
@@ -13,6 +14,7 @@ const router = createBrowserRouter(
 
     <Route path='/' element={ <Registration/> }/>
     <Route path='login' element={ <Login/> }/>
+    <Route path='home' element={ <Home/> } />
 
 
 

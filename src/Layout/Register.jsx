@@ -1,17 +1,22 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RegisterImage from "../assets/registration.jpg";
 import Heading from "../Component/Heading";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { VscEye } from "react-icons/vsc";
 import { VscEyeClosed } from "react-icons/vsc";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { Audio } from "react-loader-spinner";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
+import { RotatingLines } from "react-loader-spinner";
 import { toast, ToastContainer } from "react-toastify";
 
 function Register() {
   const auth = getAuth();
+  const navigate = useNavigate();
 
   let [show, setShow] = useState(false);
   let [email, setEmail] = useState("");
@@ -20,6 +25,7 @@ function Register() {
   let [nameerror, setNameError] = useState("");
   let [password, setPassword] = useState("");
   let [passworderror, setPasswordError] = useState("");
+  let [loader, setLoader] = useState(false);
 
   let emialregex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   let uppercase = /(?=.*?[A-Z])/;
@@ -75,18 +81,25 @@ function Register() {
       digit.test(password) &&
       spcialcharacter.test(password)
     ) {
+      setLoader(true);
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          toast.success("Registration successfully");
+          sendEmailVerification(auth.currentUser).then(() => {
+            toast.success("Verification email sent!");
+          });
 
           setEmail("");
           setName("");
           setPassword("");
+          navigate("/login");
+          setLoader(false);
         })
         .catch((error) => {
+          setLoader(false);
           const errorCode = error.code;
-          const errorMessage = error.message;
-          toast.error(errorMessage);
+          if (errorCode.includes("auth/email-already-in-use")) {
+            toast.error("Email already used");
+          }
         });
     }
   };
@@ -202,20 +215,34 @@ function Register() {
                 )}
               </div>
 
-              <Button
-                onClick={handlesignup}
-                sx={{
-                  background: "#FF6B6B",
-                  borderRadius: "86px",
-                  fontWeight: "semibold",
-                  fontSize: "20px",
-                  textTransform: "capitalize",
-                  padding: "15px 0 ",
-                }}
-                variant="contained"
-              >
-                Sign up
-              </Button>
+              {loader ? (
+                <RotatingLines
+                  visible={true}
+                  height="30"
+                  width="30"
+                  color="grey"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  ariaLabel="rotating-lines-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="flex justify-center "
+                />
+              ) : (
+                <Button
+                  onClick={handlesignup}
+                  sx={{
+                    background: "#FF6B6B",
+                    borderRadius: "86px",
+                    fontWeight: "semibold",
+                    fontSize: "20px",
+                    textTransform: "capitalize",
+                    padding: "15px 0 ",
+                  }}
+                  variant="contained"
+                >
+                  Sign up
+                </Button>
+              )}
 
               <p className="text-center font-sans text-sm text-[#03014C]">
                 Already have an account ?{" "}
