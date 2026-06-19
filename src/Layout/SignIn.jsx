@@ -103,7 +103,7 @@ function SignIn() {
           <img
             src={LoginImage}
             alt=""
-            className="w-full h-screen object-cover"
+            className="w-full h-screen object-cover hidden md:block"
           />
         </div>
         <div className="w-full md:w-1/2 flex justify-center items-center h-screen">

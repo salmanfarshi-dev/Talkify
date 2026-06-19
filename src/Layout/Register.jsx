@@ -118,7 +118,6 @@ function Register() {
             <div className="flex flex-col        gap-y-6 w-[350px]">
               <div className="">
                 <TextField
-              
                   value={email}
                   onChange={handleemail}
                   label="Email Address"
@@ -133,7 +132,6 @@ function Register() {
                       borderColor: "#11175d4d",
                     },
                     "& .MuiOutlinedInput-root:hover fieldset": {
-                    
                       borderColor: "#11175d4d",
                     },
                     "& .MuiOutlinedInput-root.Mui-focused fieldset": {
@@ -145,7 +143,9 @@ function Register() {
                   }}
                 />
                 {emailerror && (
-                  <p className="text-red-400 text-sm md:text-[16px] mt-1">{emailerror}</p>
+                  <p className="text-red-400 text-sm md:text-[16px] mt-1">
+                    {emailerror}
+                  </p>
                 )}
               </div>
 
@@ -176,7 +176,11 @@ function Register() {
                     },
                   }}
                 />
-                {nameerror && <p className="text-red-400 text-sm md:text-[16px] mt-1">{nameerror}</p>}
+                {nameerror && (
+                  <p className="text-red-400 text-sm md:text-[16px] mt-1">
+                    {nameerror}
+                  </p>
+                )}
               </div>
               <div className="relative w-full">
                 <TextField
@@ -213,7 +217,9 @@ function Register() {
                   {show ? <VscEye /> : <VscEyeClosed />}
                 </div>
                 {passworderror && (
-                  <p className="text-red-400 text-sm md:text-[16px] mt-1">{passworderror}</p>
+                  <p className="text-red-400 text-sm md:text-[16px] mt-1">
+                    {passworderror}
+                  </p>
                 )}
               </div>
 
@@ -237,12 +243,12 @@ function Register() {
                     borderRadius: "86px",
                     fontWeight: "semibold",
                     fontSize: {
-                      xs:"16px",
-                      md:"20px"
+                      xs: "16px",
+                      md: "20px",
                     },
                     textTransform: "capitalize",
-                    py:{
-                      md:"15px"
+                    py: {
+                      md: "15px",
                     },
                   }}
                   variant="contained"
