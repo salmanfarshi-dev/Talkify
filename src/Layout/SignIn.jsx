@@ -12,7 +12,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
-  sendPasswordResetEmail, FacebookAuthProvider
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { toast, ToastContainer } from "react-toastify";
 import { RotatingLines } from "react-loader-spinner";
@@ -20,11 +20,8 @@ import { LuKeyRound } from "react-icons/lu";
 import { FaFacebook } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 
-
-
 function SignIn() {
   const auth = getAuth();
-  const facebookprovider = new FacebookAuthProvider();
   const provider = new GoogleAuthProvider();
   const navigate = useNavigate();
 
@@ -96,15 +93,14 @@ function SignIn() {
     }
   };
 
-  const handlegoogle = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        navigate("/home");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+  const handlegoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+
+      navigate("/home");
+    } catch (error) {
+      toast.error(error.code);
+    }
   };
 
   const handleForgot = () => {
@@ -136,14 +132,8 @@ function SignIn() {
       });
   };
 
-
- 
-
-
-
-
   return (
-    <section className="min-h-screen bg-gradient-to-br from-[#34697B] via-[#7AE2E5] to-[#248E92]">
+    <section className="min-h-screen  bg-gradient-to-br from-[#34697B] via-[#7AE2E5] to-[#248E92]">
       <div className="relative">
         {/* Login Form */}
         <div
@@ -166,8 +156,6 @@ function SignIn() {
                   <span className="text-3xl">🔐</span>
                 </div>
                 <Heading text="Login to your account!" />
-
-              
 
                 <div className="flex flex-col mt-8 gap-y-5 w-full">
                   {/* Email */}
@@ -195,7 +183,7 @@ function SignIn() {
                     <TextField
                       onChange={handlepassword}
                       value={password}
-                       sx={{
+                      sx={{
                         width: "100%",
                         "& .MuiOutlinedInput-root": {
                           borderRadius: "16px",
@@ -261,34 +249,31 @@ function SignIn() {
                     </Button>
                   )}
 
-
                   <div className="flex justify-center items-center gap-x-5">
-                      <Button
-                  onClick={handlegoogle}
-                  sx={{
-                    py: 1.8,
-                    width: "100%",
-                    borderRadius: "16px",
-                    textTransform: "none",
-                    fontWeight: 600,
-                    backgroundColor: "#34697b66",
-                    border: "1px solid #e5e7eb",
-                    fontSize: "16px",
-                  }}
-                  variant="outlined"
-                  startIcon={<FcGoogle />}
-                >
-                 Continue with Google
-                </Button>
-
-                 
+                    <Button
+                      onClick={handlegoogle}
+                      sx={{
+                        py: 1.8,
+                        width: "100%",
+                        borderRadius: "16px",
+                        textTransform: "none",
+                        fontWeight: 600,
+                        backgroundColor: "#34697b66",
+                        border: "1px solid #e5e7eb",
+                        fontSize: "16px",
+                      }}
+                      variant="outlined"
+                      startIcon={<FcGoogle />}
+                    >
+                      Continue with Google
+                    </Button>
                   </div>
 
                   <p className="text-center font-sans text-sm text-[#03014C]">
                     Don’t have an account ?
                     <Link to="/">
                       <span className="text-[#EA6C00] cursor-pointer ml-1">
-                       Register for free
+                        Register for free
                       </span>
                     </Link>
                   </p>
