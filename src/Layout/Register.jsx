@@ -236,11 +236,11 @@ function Register() {
             </div>
           </div>
         </div>
-        <div className="hidden md:block md:w-1/2 p-4">
+        <div className="hidden md:block md:w-1/2 ">
           <img
             src={RegisterImage}
             alt=""
-            className="w-full h-[calc(100vh-32px)] object-cover rounded-[40px]"
+            className="w-full h-screen object-cover "
           />
         </div>
       </div>

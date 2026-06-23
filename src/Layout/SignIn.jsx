@@ -106,9 +106,7 @@ function SignIn() {
         const errorMessage = error.message;
       });
   };
-const handleGithub=()=>{
 
-}
   const handleForgot = () => {
     setPopup(true);
   };
@@ -139,21 +137,7 @@ const handleGithub=()=>{
   };
 
 
- const handleFacebook = () => {
-
-    provider.addScope("email");
-  provider.addScope("public_profile");
-  signInWithPopup(auth, facebookprovider)
-    .then((result) => {
-      console.log(result.user);
-      toast.success("Facebook login successful");
-      navigate("/home");
-    })
-    .catch((error) => {
-      console.log(error);
-      toast.error(error.message);
-    });
-};
+ 
 
 
 
@@ -168,7 +152,7 @@ const handleGithub=()=>{
           } transition-all duration-300`}
         >
           <div className="flex flex-col-reverse md:flex-row min-h-screen">
-            <div className="hidden md:block md:w-1/2 p-4">
+            <div className="hidden md:block md:w-1/2 h-screen">
               <img
                 src={LoginImage}
                 alt=""
@@ -289,51 +273,15 @@ const handleGithub=()=>{
                     fontWeight: 600,
                     backgroundColor: "#34697b66",
                     border: "1px solid #e5e7eb",
-                    fontSize: "3px",
+                    fontSize: "16px",
                   }}
                   variant="outlined"
                   startIcon={<FcGoogle />}
                 >
-                 
+                 Continue with Google
                 </Button>
 
-                  <Button
-                  onClick={handleFacebook}
-                  sx={{
-                    py: 1.8,
-                    width: "100%",
-                    borderRadius: "16px",
-                    textTransform: "none",
-                    fontWeight: 600,
-                    backgroundColor: "#34697b66",
-                    border: "1px solid #e5e7eb",
-                    fontSize: "3px",
-                  }}
-                  variant="outlined"
-                  startIcon={<FaFacebook />
-}
-                >
                  
-                </Button>
-
-                  <Button
-                  onClick={handleGithub}
-                  sx={{
-                    py: 1.8,
-                    width: "100%",
-                    borderRadius: "16px",
-                    textTransform: "none",
-                    fontWeight: 600,
-                    backgroundColor: "#34697b66",
-                    border: "1px solid #e5e7eb",
-                    fontSize: "3px",
-                  }}
-                  variant="outlined"
-                  startIcon={<FaGithub className="text-black "/>
-}
-                >
-                 
-                </Button>
                   </div>
 
                   <p className="text-center font-sans text-sm text-[#03014C]">
