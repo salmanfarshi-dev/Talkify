@@ -9,10 +9,11 @@ import { VscEyeClosed } from "react-icons/vsc";
 import {
   getAuth,
   createUserWithEmailAndPassword,
-  sendEmailVerification,
+  sendEmailVerification,  
 } from "firebase/auth";
 import { RotatingLines } from "react-loader-spinner";
 import { toast, ToastContainer } from "react-toastify";
+import { HiOutlineSparkles } from "react-icons/hi";
 
 function Register() {
   const auth = getAuth();
@@ -105,17 +106,21 @@ function Register() {
   };
 
   return (
-    <section>
-      <div className="flex gap-x-18">
-        <div className="md:w-1/2 w-full flex justify-end items-center h-screen">
-          <div className="flex flex-col  justify-center md:justify-start md:items-start items-center mx-auto md:w-[500px]">
+    <section className="min-h-screen bg-gradient-to-br from-[#34697B] via-[#7AE2E5] to-[#248E92]">
+      <div className="flex flex-col-reverse md:flex-row min-h-screen">
+        <div className="w-full md:w-1/2 flex justify-center items-center px-5 py-10">
+          <div className="w-full max-w-[450px] bg-white rounded-[32px] p-6 md:p-10 shadow-[0_20px_60px_rgba(0,0,0,.28)">
+            <div className="w-16 h-16 rounded-2xl bg-[#FF6B6B]/10 flex justify-center items-center mb-6 mx-auto md:mx-0">
+                <HiOutlineSparkles className="text-3xl text-[#248E92]" />
+            </div>
             <Heading text="Get started with easily register" />
+            <div className="md:hidden h-2"></div>
 
-            <p className=" text-sm md:text-xl font-nunito font-normal text-black/50 mt-3 mb-10">
+            <p className=" text-gray-500 text-sm md:text-base mt-3 mb-8">
               Free register and you can enjoy it
             </p>
 
-            <div className="flex flex-col        gap-y-6 w-[350px]">
+            <div className="flex flex-col gap-y-5 w-full">
               <div className="">
                 <TextField
                   value={email}
@@ -124,21 +129,9 @@ function Register() {
                   variant="outlined"
                   sx={{
                     width: "100%",
-
                     "& .MuiOutlinedInput-root": {
-                      borderRadius: "8.6px",
-                    },
-                    "& .MuiOutlinedInput-root fieldset": {
-                      borderColor: "#11175d4d",
-                    },
-                    "& .MuiOutlinedInput-root:hover fieldset": {
-                      borderColor: "#11175d4d",
-                    },
-                    "& .MuiOutlinedInput-root.Mui-focused fieldset": {
-                      borderColor: "#11175d4d",
-                    },
-                    "& .MuiInputLabel-root.Mui-focused": {
-                      color: "#11175db3",
+                      borderRadius: "16px",
+                      backgroundColor: "#fafafa",
                     },
                   }}
                 />
@@ -158,21 +151,9 @@ function Register() {
                   variant="outlined"
                   sx={{
                     width: "100%",
-
                     "& .MuiOutlinedInput-root": {
-                      borderRadius: "8.6px",
-                    },
-                    "& .MuiOutlinedInput-root fieldset": {
-                      borderColor: "#11175d4d",
-                    },
-                    "& .MuiOutlinedInput-root:hover fieldset": {
-                      borderColor: "#11175d4d",
-                    },
-                    "& .MuiOutlinedInput-root.Mui-focused fieldset": {
-                      borderColor: "#11175d4d",
-                    },
-                    "& .MuiInputLabel-root.Mui-focused": {
-                      color: "#11175db3",
+                      borderRadius: "16px",
+                      backgroundColor: "#fafafa",
                     },
                   }}
                 />
@@ -191,28 +172,16 @@ function Register() {
                   variant="outlined"
                   sx={{
                     width: "100%",
-
                     "& .MuiOutlinedInput-root": {
-                      borderRadius: "8.6px",
-                    },
-                    "& .MuiOutlinedInput-root fieldset": {
-                      borderColor: "#11175d4d",
-                    },
-                    "& .MuiOutlinedInput-root:hover fieldset": {
-                      borderColor: "#11175d4d",
-                    },
-                    "& .MuiOutlinedInput-root.Mui-focused fieldset": {
-                      borderColor: "#11175d4d",
-                    },
-                    "& .MuiInputLabel-root.Mui-focused": {
-                      color: "#11175db3",
+                      borderRadius: "16px",
+                      backgroundColor: "#fafafa",
                     },
                   }}
                 />
 
                 <div
                   onClick={handleeye}
-                  className="absolute top-1/2 -translate-y-1/2 right-4 cursor-pointer"
+                  className="absolute top-1/2 -translate-y-1/2 right-5 text-lg text-gray-500 cursor-pointer"
                 >
                   {show ? <VscEye /> : <VscEyeClosed />}
                 </div>
@@ -239,16 +208,17 @@ function Register() {
                 <Button
                   onClick={handlesignup}
                   sx={{
-                    background: "#FF6B6B",
-                    borderRadius: "86px",
-                    fontWeight: "semibold",
-                    fontSize: {
-                      xs: "16px",
-                      md: "20px",
-                    },
-                    textTransform: "capitalize",
-                    py: {
-                      md: "15px",
+                    background:
+                      "linear-gradient(135deg,#FF6B6B 0%,#FF8E53 100%)",
+                    borderRadius: "16px",
+                    py: 1.8,
+                    textTransform: "none",
+                    fontSize: "16px",
+                    fontWeight: 700,
+                    boxShadow: "0px 15px 40px rgba(255,107,107,.35)",
+                    "&:hover": {
+                      background:
+                        "linear-gradient(135deg,#FF6B6B 0%,#FF8E53 100%)",
                     },
                   }}
                   variant="contained"
@@ -257,20 +227,20 @@ function Register() {
                 </Button>
               )}
 
-              <p className="text-center font-sans text-sm text-[#03014C]">
+              <p className="text-center text-gray-500 text-sm">
                 Already have an account ?{" "}
                 <Link to="/login">
-                  <span className="text-[#EA6C00]">Sign In</span>
+                  <span className="text-[#FF6B6B] font-semibold">Sign In</span>
                 </Link>
               </p>
             </div>
           </div>
         </div>
-        <div className="w-1/2 hidden md:block">
+        <div className="hidden md:block md:w-1/2 p-4">
           <img
             src={RegisterImage}
             alt=""
-            className="w-full h-screen object-cover"
+            className="w-full h-[calc(100vh-32px)] object-cover rounded-[40px]"
           />
         </div>
       </div>
