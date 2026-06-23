@@ -19,12 +19,13 @@ import { RotatingLines } from "react-loader-spinner";
 import { LuKeyRound } from "react-icons/lu";
 import { FaFacebook } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
+import FacebookLoader from "../Component/FacebookLoader";
 
 function SignIn() {
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
   const navigate = useNavigate();
-
+  const [loadingScreen, setLoadingScreen] = useState(false);
   let [email, setEmail] = useState("");
   let [emailreset, setEmailReset] = useState("");
   let [password, setPassword] = useState("");
@@ -75,7 +76,11 @@ function SignIn() {
 
             setEmail("");
             setPassword("");
-            navigate("/home");
+            setLoadingScreen(true);
+
+            setTimeout(() => {
+              navigate("/home");
+            }, 1500);
 
             setLoader(false);
           } else {
@@ -95,9 +100,13 @@ function SignIn() {
 
   const handlegoogle = async () => {
     try {
-      const result = await signInWithPopup(auth, provider);
+      await signInWithPopup(auth, provider);
 
-      navigate("/home");
+      setLoadingScreen(true);
+
+      setTimeout(() => {
+        navigate("/home");
+      }, 1500);
     } catch (error) {
       toast.error(error.code);
     }
@@ -132,6 +141,9 @@ function SignIn() {
       });
   };
 
+  if (loadingScreen) {
+    return <FacebookLoader />;
+  }
   return (
     <section className="min-h-screen  bg-gradient-to-br from-[#34697B] via-[#7AE2E5] to-[#248E92]">
       <div className="relative">
@@ -366,6 +378,10 @@ function SignIn() {
         pauseOnHover
         theme="light"
       />
+
+
+
+    
     </section>
   );
 }
