@@ -1,14 +1,17 @@
 import React from 'react'
 import Sidebar from '../Pages/Sidebar'
+import { Outlet } from 'react-router-dom'
 
 function RootLayout() {
   return (
-    <section className='mt-2 mb-2 ml-2'>
+    <section className='flex mt-2 mb-2 ml-2'>
         <div className="w-2/12">
         <Sidebar/>
 
         </div>
-        <div className="10/12">
+        <div className="w-10/12 pr-10">
+        <Outlet/>
+        
         </div>
 
     </section>

@@ -6,7 +6,6 @@ import Message from './Pages/Message';
 import Notification from './Pages/Notification';
 import Setting from './Pages/Setting';
 import Logout from './Pages/Logout';
-import Sidebar from './Pages/Sidebar';
 import Home from './Pages/Home';
 import RootLayout from './Component/RootLayout';
 
@@ -19,11 +18,12 @@ import RootLayout from './Component/RootLayout';
 const router = createBrowserRouter(
   createRoutesFromElements(
    <Route>
-     
-     <Route path='/' element={<RootLayout/>}/>
     <Route path='/' element={ <Registration/> }/>
     <Route path='login' element={ <Login/> }/>
-    <Route path='home' element={ <Home/> } />
+     
+  <Route path='/' element={<RootLayout/>}>
+     
+     <Route path='home' element={ <Home/> } />
     <Route path='message' element={ <Message/>} />
     <Route path='notification' element={<Notification/>}/>
     <Route path='setting' element={<Setting/>}/>
@@ -31,6 +31,9 @@ const router = createBrowserRouter(
    
 
 
+  </Route>
+
+    
 
    </Route>
   )
