@@ -6,42 +6,63 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { LuSettings } from "react-icons/lu";
 import { HiOutlineLogout } from "react-icons/hi";
 
-
 function Sidebar() {
   return (
-    <section className="">
-      <div className="w-46.5 Sidebar rounded-3xl flex flex-col justify-between items-center bg-[#FF8E53] h-[97vh] fixed pt-3 pb-3">
-        <div className="w-30 h-30 bg-white rounded-full overflow-hidden">
+    <>
+      <aside className="hidden md:flex fixed left-4 top-3 w-46.5 h-[97vh] bg-[#FF8E53] rounded-3xl flex-col justify-between items-center py-4">
+        <div className="w-28 h-28 bg-white rounded-full overflow-hidden">
           <img src={imag} alt="" className="w-full h-full object-cover" />
         </div>
 
-        <div>
-          <ul className="gap-y-10 flex flex-col">
-            <li className="text-white text-4xl">
-              <GrHome />
-            </li>
-            <li className="text-white text-4xl">
-              <AiOutlineMessage />
-            </li>
-            <li className="text-white text-4xl">
-              <IoMdNotificationsOutline />
-            </li>
-            <li className="text-white text-4xl">
-              <LuSettings />
-            </li>
-          </ul>
-        </div>
-        <div className="">
-         <ul>
-           <li className="text-white text-4xl">
-              <HiOutlineLogout />
+        <ul className="flex flex-col gap-y-10">
+          <li className="text-white text-4xl cursor-pointer hover:scale-110 duration-300">
+            <GrHome />
+          </li>
 
-            </li>
-         </ul>
+          <li className="text-white text-4xl cursor-pointer hover:scale-110 duration-300">
+            <AiOutlineMessage />
+          </li>
+
+          <li className="text-white text-4xl cursor-pointer hover:scale-110 duration-300">
+            <IoMdNotificationsOutline />
+          </li>
+
+          <li className="text-white text-4xl cursor-pointer hover:scale-110 duration-300">
+            <LuSettings />
+          </li>
+        </ul>
+
+        <div className="text-white text-4xl cursor-pointer hover:scale-110 duration-300">
+          <HiOutlineLogout />
         </div>
-      </div>
-     
-    </section>
+      </aside>
+
+      <aside className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] bg-[#FF8E53] rounded-full shadow-2xl px-6 py-4 flex justify-between items-center md:hidden z-50">
+        <button className="text-white text-2xl active:scale-90 duration-200">
+          <GrHome />
+        </button>
+
+        <button className="text-white text-2xl active:scale-90 duration-200">
+          <AiOutlineMessage />
+        </button>
+
+        <button className="w-14 h-14 rounded-full bg-white flex justify-center items-center shadow-xl -mt-10">
+          <img
+            src={imag}
+            alt=""
+            className="w-12 h-12 rounded-full object-cover"
+          />
+        </button>
+
+        <button className="text-white text-2xl active:scale-90 duration-200">
+          <IoMdNotificationsOutline />
+        </button>
+
+        <button className="text-white text-2xl active:scale-90 duration-200">
+          <LuSettings />
+        </button>
+      </aside>
+    </>
   );
 }
 
