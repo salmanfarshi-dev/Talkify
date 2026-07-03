@@ -8,6 +8,21 @@
 body{
     font-family: var(--font-poppins);
 }
+
+
+@utility icons{
+  @apply relative flex items-center after:bg-primary after:w-32   after:h-16  z-10 after:-z-10  after:rounded-l-xl after:absolute after:top-1/2 after:-translate-y-1/2 after:-left-5 after:content-[''] text-text-primary text-4xl cursor-pointer   duration-300 before:absolute before:content-[''] before:w-3 before:rounded-l before:h-16 before:z-40 before:bg-accent before:shadow-[0_-4px_10px_rgba(0,0,0,0.6)] before:-right-20
+}
+
+
+
+
+
+
+
+
+
+
 @theme {
   --font-poppins: "Poppins", sans-serif;
   --font-nunito: "Nunito", sans-serif;

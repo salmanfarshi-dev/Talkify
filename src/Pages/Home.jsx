@@ -35,6 +35,7 @@ function Home() {
           tittle="Friends"
           number="128"
           status="Total Friends"
+          link="/friends"
         />
 
         <HomeCard
@@ -43,7 +44,8 @@ function Home() {
           tittle="Groups"
           number="128"
           status="Total Groups"
-        />
+          link="/group"
+          />
 
         <HomeCard
           icon={<FaUserGroup />}
@@ -51,7 +53,8 @@ function Home() {
           tittle="Users"
           number="128"
           status="Total Users"
-        />
+          link="/users"
+          />
 
         <HomeCard
           icon={<FaUserGroup />}
@@ -59,7 +62,8 @@ function Home() {
           tittle="Friend Requests"
           number="128"
           status="New Requests"
-        />
+          link="/request"
+          />
 
         <HomeCard
           icon={<FaUserGroup />}
@@ -67,7 +71,8 @@ function Home() {
           tittle="My Groups"
           number="128"
           status="Groups You Manage"
-        />
+          link="/mygroup"
+          />
 
         <HomeCard
           icon={<ImBlocked />}
@@ -75,6 +80,7 @@ function Home() {
           tittle="Blocked Users"
           number="128"
           status="Blocked Users"
+          link="/block"
         />
       </div>
     </section>
