@@ -12,18 +12,18 @@ function Home() {
         <Input
           aria-label="Search"
           placeholder="Search here..."
-          className="w-full md:w-72 py-3 rounded-full shadow-[0px_0px_10px_rgba(0,0,0,0.2)] pr-10"
+          className="w-full md:w-72 py-3 rounded-full shadow-[0px_0px_10px_rgba(255,255,255,0.1)] pr-10 bg-surface"
         />
 
         <IoSearch className="absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 text-xl" />
       </div>
 
       <div className="mb-8">
-        <h1 className="text-xl md:text-2xl font-semibold">
+        <h1 className="text-xl md:text-2xl font-semibold text-text-primary">
           Welcome back, Salman Farshi 👋
         </h1>
 
-        <p className="text-secondary text-sm md:text-base">
+        <p className="text-text-secondary text-sm md:text-base">
           Here's what's happening today
         </p>
       </div>

@@ -14,7 +14,16 @@ body{
   --font-sans: "Open Sans", sans-serif;
 
 
-  --color-secondary: #808080;
+--color-background: #0F172A;
+--color-surface: #1E293B;
+--color-secondary:#334155;
+--color-border:#3B4A61;
+--color-primary:#2563EB;
+--color-success:#22C55E;
+--color-warning:#F5950B;
+--color-accent: #A78BFA;
+--color-text-primary:#F8FAFC;
+--color-text-secondary: #94A3BB;
 }
 
 
