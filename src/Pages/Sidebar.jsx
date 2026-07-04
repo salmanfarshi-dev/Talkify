@@ -102,31 +102,37 @@ const active = location.pathname.replace("/", "");
         </div>
       </aside>
 
-      <aside className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] bg-[#FF8E53] rounded-full shadow-2xl px-6 py-4 flex justify-between items-center md:hidden z-50">
-        <button className="text-text-primary text-2xl active:scale-90 duration-200">
-          <GrHome />
-        </button>
+     <aside className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] bg-surface border border-border rounded-full shadow-2xl px-6 py-4 flex justify-between items-center md:hidden z-50">
 
-        <button className="text-text-primary text-2xl active:scale-90 duration-200">
-          <AiOutlineMessage />
-        </button>
+  <Link to="/home">
+    <GrHome className={active === "home" ? "text-primary text-2xl" : "text-text-primary text-2xl"} />
+  </Link>
 
-        <button className="w-14 h-14 rounded-full bg-text-primary flex justify-center items-center shadow-xl -mt-10">
-          <img
-            src={imag}
-            alt=""
-            className="w-12 h-12 rounded-full object-cover"
-          />
-        </button>
+  <Link to="/message">
+    <AiOutlineMessage className={active === "message" ? "text-primary text-2xl" : "text-text-primary text-2xl"} />
+  </Link>
 
-        <button className="text-text-primary text-2xl active:scale-90 duration-200">
-          <IoMdNotificationsOutline />
-        </button>
+  <div className="w-14 h-14 rounded-full bg-text-primary flex justify-center items-center shadow-xl -mt-10">
+    <img
+      src={imag}
+      alt=""
+      className="w-12 h-12 rounded-full object-cover"
+    />
+  </div>
 
-        <button className="text-text-primary text-2xl active:scale-90 duration-200">
-          <LuSettings />
-        </button>
-      </aside>
+  <Link to="/notification">
+    <IoMdNotificationsOutline
+      className={active === "notification" ? "text-primary text-2xl" : "text-text-primary text-2xl"}
+    />
+  </Link>
+
+  <Link to="/setting">
+    <LuSettings
+      className={active === "setting" ? "text-primary text-2xl" : "text-text-primary text-2xl"}
+    />
+  </Link>
+
+</aside>
     </>
   );
 }
