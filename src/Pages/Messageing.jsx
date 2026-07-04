@@ -15,7 +15,7 @@ function Messageing({selectedChat}) {
     <div className="border border-border rounded-[20px] w-full bg-background overflow-hidden relative">
       {/* top part  */}
 
-      <div className="bg-surface py-7">
+      <div className="bg-surface py-4 md:py-7">
         <div className="flex justify-between px-4">
           <div className="flex gap-x-2">
             <div className="w-10 h-10 rounded-full overflow-hidden">
@@ -29,11 +29,11 @@ function Messageing({selectedChat}) {
             </div>
           </div>
 
-          <div className="flex items-center gap-x-7">
-            <LuVideo className="text-xl" />
-            <IoCallOutline className="text-xl" />
-            <LuSearch className="text-xl" />
-            <BsThreeDotsVertical className="text-xl" />
+          <div className="flex items-center gap-x-4 lg:gap-x-7">
+            <LuSearch className="text-sm md:text-xl" />
+            <IoCallOutline className="text-sm md:text-xl" />
+            <LuVideo className="text-sm md:text-xl" />
+            <BsThreeDotsVertical className="text-sm md:text-xl" />
           </div>
         </div>
       </div>
@@ -41,13 +41,13 @@ function Messageing({selectedChat}) {
       <div className="px-4">
         {/* message part  */}
 
-        <div className=" overflow-y-auto h-[80vh] scrollbar-none"></div>
+        <div className=" overflow-y-auto h-[75vh] lg:h-[80vh] scrollbar-none"></div>
 
         {/* bottom part  */}
 
         <div className="bg-surface rounded-[10px] px-2 absolute bottom-2 lg:w-[96%] flex items-center">
-          <div className="rounded w-10 h-8 bg-border flex justify-center items-center cursor-pointer">
-            <FaPlus />
+          <div className="rounded w-8 h-6 lg:w-10 lg:h-8 bg-border flex justify-center items-center cursor-pointer">
+            <FaPlus className="text-sm md:text-[16px]"/>
           </div>
           <input
             type="text"
@@ -58,8 +58,8 @@ function Messageing({selectedChat}) {
           <div className="flex gap-x-3 items-center pl-6">
             <BsEmojiSmile className="text-xl cursor-pointer" />
 
-            <Button className="rounded-[10px] px-6 bg-primary">
-              <RiSendPlaneFill className="size-6" />
+            <Button className="rounded-[10px] px-3 md:px-6 bg-primary">
+              <RiSendPlaneFill className="size-5 md:size-6" />
             </Button>
           </div>
         </div>

@@ -8,7 +8,7 @@ function Message() {
   return (
      <section>
       {/* Mobile */}
-      <div className="md:hidden">
+      <div className="md:hidden ">
         <ChatList />
       </div>
 

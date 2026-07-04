@@ -4,7 +4,7 @@ import MessageCard from '../Component/MessageCard'
 function ChatList({setSelectedChat }) {
   return (
    <>
-   <div className=" lg:w-100 h-[100vh] lg:h-[97vh] bg-surface rounded-[10px] flex flex-col">
+   <div className=" lg:w-100 h-[95vh] lg:h-[97vh] bg-surface rounded-[10px] flex flex-col">
   <h4 className="px-3 py-4 text-xl flex-shrink-0">
     All Chat
   </h4>
