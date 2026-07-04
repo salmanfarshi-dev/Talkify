@@ -14,6 +14,8 @@ import Users from './Pages/Users';
 import Request from './Pages/Request';
 import MyGroup from './Pages/MyGroup';
 import Block from './Pages/Block';
+import Messageing from './Pages/Messageing';
+import MobileMessage from './Pages/MobileMessage';
 
 
 
@@ -40,6 +42,7 @@ const router = createBrowserRouter(
     <Route path='request' element={<Request/>} />
     <Route path='mygroup' element={<MyGroup/>} />
     <Route path='block' element={<Block/>} />
+   <Route path='message/:id' element={<MobileMessage/>}/>
    
 
 

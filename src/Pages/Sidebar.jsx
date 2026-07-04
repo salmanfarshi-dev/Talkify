@@ -7,9 +7,6 @@ import { LuSettings } from "react-icons/lu";
 import { HiOutlineLogout } from "react-icons/hi";
 import { Link, useLocation } from "react-router-dom";
 
-
-
-
 const menu = [
   {
     path: "home",
@@ -29,14 +26,9 @@ const menu = [
   },
 ];
 
-
-
 function Sidebar() {
-
-const location = useLocation();
-const active = location.pathname.replace("/", "");
-
-
+  const location = useLocation();
+  const active = location.pathname.replace("/", "");
 
   return (
     <>
@@ -46,13 +38,13 @@ const active = location.pathname.replace("/", "");
         </div>
 
         <ul className="flex flex-col gap-y-10">
-  {menu.map((item, index) => {
-    const Icon = item.icon;
+          {menu.map((item, index) => {
+            const Icon = item.icon;
 
-    return (
-      <Link key={index} to={`/${item.path}`}>
-        <li
-          className={`
+            return (
+              <Link key={index} to={`/${item.path}`}>
+                <li
+                  className={`
             relative flex items-center
             text-4xl cursor-pointer duration-300
             z-10
@@ -83,56 +75,74 @@ const active = location.pathname.replace("/", "");
                 : "after:bg-transparent before:bg-transparent"
             }
           `}
-        >
-          <Icon
-            className={`relative z-20 ${
-              active === item.path
-                ? "text-text-primary"
-                : "text-text-primary"
-            }`}
-          />
-        </li>
-      </Link>
-    );
-  })}
-</ul>
+                >
+                  <Icon
+                    className={`relative z-20 ${
+                      active === item.path
+                        ? "text-text-primary"
+                        : "text-text-primary"
+                    }`}
+                  />
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
 
         <div className="text-text-primary text-4xl cursor-pointer hover:scale-110 duration-300">
           <HiOutlineLogout />
         </div>
       </aside>
 
-     <aside className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] bg-surface border border-border rounded-full shadow-2xl px-6 py-4 flex justify-between items-center md:hidden z-50">
+      <aside className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] bg-surface border border-border rounded-full shadow-2xl px-6 py-4 flex justify-between items-center md:hidden z-50">
+        <Link to="/home">
+          <GrHome
+            className={
+              active === "home"
+                ? "text-primary text-2xl"
+                : "text-text-primary text-2xl"
+            }
+          />
+        </Link>
 
-  <Link to="/home">
-    <GrHome className={active === "home" ? "text-primary text-2xl" : "text-text-primary text-2xl"} />
-  </Link>
+        <Link to="/message">
+          <AiOutlineMessage
+            className={
+              active === "message"
+                ? "text-primary text-2xl"
+                : "text-text-primary text-2xl"
+            }
+          />
+        </Link>
 
-  <Link to="/message">
-    <AiOutlineMessage className={active === "message" ? "text-primary text-2xl" : "text-text-primary text-2xl"} />
-  </Link>
+        <div className="w-14 h-14 rounded-full bg-text-primary flex justify-center items-center shadow-xl -mt-10">
+          <img
+            src={imag}
+            alt=""
+            className="w-12 h-12 rounded-full object-cover"
+          />
+        </div>
 
-  <div className="w-14 h-14 rounded-full bg-text-primary flex justify-center items-center shadow-xl -mt-10">
-    <img
-      src={imag}
-      alt=""
-      className="w-12 h-12 rounded-full object-cover"
-    />
-  </div>
+        <Link to="/notification">
+          <IoMdNotificationsOutline
+            className={
+              active === "notification"
+                ? "text-primary text-2xl"
+                : "text-text-primary text-2xl"
+            }
+          />
+        </Link>
 
-  <Link to="/notification">
-    <IoMdNotificationsOutline
-      className={active === "notification" ? "text-primary text-2xl" : "text-text-primary text-2xl"}
-    />
-  </Link>
-
-  <Link to="/setting">
-    <LuSettings
-      className={active === "setting" ? "text-primary text-2xl" : "text-text-primary text-2xl"}
-    />
-  </Link>
-
-</aside>
+        <Link to="/setting">
+          <LuSettings
+            className={
+              active === "setting"
+                ? "text-primary text-2xl"
+                : "text-text-primary text-2xl"
+            }
+          />
+        </Link>
+      </aside>
     </>
   );
 }
