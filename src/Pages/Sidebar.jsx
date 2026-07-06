@@ -1,5 +1,5 @@
 import React from "react";
-import imag from "../assets/login.jpg";
+import image from "../assets/salman.jpeg";
 import { GrHome } from "react-icons/gr";
 import { AiOutlineMessage } from "react-icons/ai";
 import { IoMdNotificationsOutline } from "react-icons/io";
@@ -34,7 +34,7 @@ function Sidebar() {
     <>
       <aside className="hidden md:flex fixed left-4 top-3 w-46.5 h-[97vh] bg-surface border border-border rounded-3xl flex-col justify-between items-center py-4 overflow-hidden">
         <div className="w-28 h-28 rounded-full overflow-hidden">
-          <img src={imag} alt="" className="w-full h-full object-cover" />
+          <img src={image} alt="" className="w-full h-full object-cover" />
         </div>
 
         <ul className="flex flex-col gap-y-10">
@@ -96,7 +96,7 @@ function Sidebar() {
 
         <div className="w-14 h-14 rounded-full bg-text-primary flex justify-center items-center shadow-xl -mt-10">
           <img
-            src={imag}
+            src={image}
             alt=""
             className="w-12 h-12 rounded-full object-cover"
           />
