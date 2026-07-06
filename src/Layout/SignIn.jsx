@@ -173,13 +173,15 @@ function SignIn() {
                   {/* Email */}
                   <div>
                     <TextField
+
                       value={email}
                       onChange={handleemail}
                       sx={{
                         width: "100%",
                         "& .MuiOutlinedInput-root": {
                           borderRadius: "16px",
-                          backgroundColor: "#fafafa",
+                          backgroundColor: "",
+                          color:"#11175D",
                         },
                       }}
                       label="Email Address"
@@ -199,7 +201,8 @@ function SignIn() {
                         width: "100%",
                         "& .MuiOutlinedInput-root": {
                           borderRadius: "16px",
-                          backgroundColor: "#fafafa",
+                          backgroundColor: "",
+                          color:"#11175D",
                         },
                       }}
                       label="Password"

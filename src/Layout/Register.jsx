@@ -109,14 +109,14 @@ function Register() {
     <section className="min-h-screen bg-gradient-to-br from-[#34697B] via-[#7AE2E5] to-[#248E92]">
       <div className="flex flex-col-reverse md:flex-row min-h-screen">
         <div className="w-full md:w-1/2 flex justify-center items-center px-5 py-10">
-          <div className="w-full max-w-[450px] md:bg-transparent bg-white rounded-[32px] p-6 md:p-10 md:shadow-none  shadow-[0_20px_60px_rgba(0,0,0,0.28)]">
-            <div className="w-16 h-16 md:hidden block rounded-2xl bg-[#FF6B6B]/10 flex justify-center items-center mb-6 mx-auto md:mx-0">
+          <div className="w-full max-w-[450px] md:bg-transparent  rounded-[32px] p-6 md:p-10 md:shadow-none  shadow-[0_20px_60px_rgba(0,0,0,0.28)]">
+            <div className="w-16 h-16 md:hidden block rounded-2xl bg-secondary/10 flex justify-center items-center mb-6 mx-auto md:mx-0">
                 <HiOutlineSparkles className="text-3xl text-[#248E92]" />
             </div>
             <Heading text="Get started with easily register" />
             <div className="md:hidden h-2"></div>
 
-            <p className=" text-gray-500 text-sm md:text-base mt-3 mb-8">
+            <p className=" text-gray-500 text-sm md:text-base md:mt-3 mb-8">
               Free register and you can enjoy it
             </p>
 
@@ -131,7 +131,8 @@ function Register() {
                     width: "100%",
                     "& .MuiOutlinedInput-root": {
                       borderRadius: "16px",
-                      backgroundColor: "#fafafa",
+                     backgroundColor: "",
+                          color:"#11175D",
                     },
                   }}
                 />
@@ -153,7 +154,8 @@ function Register() {
                     width: "100%",
                     "& .MuiOutlinedInput-root": {
                       borderRadius: "16px",
-                      backgroundColor: "#fafafa",
+                     backgroundColor: "",
+                          color:"#11175D",
                     },
                   }}
                 />
@@ -174,7 +176,8 @@ function Register() {
                     width: "100%",
                     "& .MuiOutlinedInput-root": {
                       borderRadius: "16px",
-                      backgroundColor: "#fafafa",
+                     backgroundColor: "",
+                          color:"#11175D",
                     },
                   }}
                 />
@@ -230,7 +233,7 @@ function Register() {
               <p className="text-center text-gray-500 text-sm">
                 Already have an account ?{" "}
                 <Link to="/login">
-                  <span className="text-[#FF6B6B] font-semibold">Sign In</span>
+                  <span className="text-[#c55f06]  font-semibold">Sign In</span>
                 </Link>
               </p>
             </div>
