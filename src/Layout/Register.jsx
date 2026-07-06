@@ -109,8 +109,8 @@ function Register() {
     <section className="min-h-screen bg-gradient-to-br from-[#34697B] via-[#7AE2E5] to-[#248E92]">
       <div className="flex flex-col-reverse md:flex-row min-h-screen">
         <div className="w-full md:w-1/2 flex justify-center items-center px-5 py-10">
-          <div className="w-full max-w-[450px] bg-white rounded-[32px] p-6 md:p-10 shadow-[0_20px_60px_rgba(0,0,0,.28)">
-            <div className="w-16 h-16 rounded-2xl bg-[#FF6B6B]/10 flex justify-center items-center mb-6 mx-auto md:mx-0">
+          <div className="w-full max-w-[450px] md:bg-transparent bg-white rounded-[32px] p-6 md:p-10 md:shadow-none  shadow-[0_20px_60px_rgba(0,0,0,0.28)]">
+            <div className="w-16 h-16 md:hidden block rounded-2xl bg-[#FF6B6B]/10 flex justify-center items-center mb-6 mx-auto md:mx-0">
                 <HiOutlineSparkles className="text-3xl text-[#248E92]" />
             </div>
             <Heading text="Get started with easily register" />

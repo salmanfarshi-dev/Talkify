@@ -163,8 +163,8 @@ function SignIn() {
             </div>
 
             <div className="w-full md:w-1/2 flex justify-center items-center px-5 py-10">
-              <div className="w-full max-w-[450px] bg-white rounded-[32px] p-6 md:p-10 shadow-[0_20px_60px_rgba(0,0,0,.28)] border-2 border-white/30">
-                <div className="w-16 h-16 rounded-2xl bg-[#248E92]/10 flex justify-center items-center mb-6">
+              <div className="w-full max-w-[450px] rounded-[32px] p-6 md:p-10 md:shadow-none shadow-[0_20px_60px_rgba(0,0,0,.28)] border-2 border-white/30 md:border-0">
+                <div className="w-16 h-16 rounded-2xl bg-[#248E92]/10 flex justify-center items-center mb-6 md:hidden block">
                   <span className="text-3xl">🔐</span>
                 </div>
                 <Heading text="Login to your account!" />
@@ -267,6 +267,7 @@ function SignIn() {
                       sx={{
                         py: 1.8,
                         width: "100%",
+                        color:"white",
                         borderRadius: "16px",
                         textTransform: "none",
                         fontWeight: 600,
@@ -284,7 +285,7 @@ function SignIn() {
                   <p className="text-center font-sans text-sm text-[#03014C]">
                     Don’t have an account ?
                     <Link to="/">
-                      <span className="text-[#EA6C00] cursor-pointer ml-1">
+                      <span className="text-[#c55f06] cursor-pointer ml-1">
                         Register for free
                       </span>
                     </Link>
