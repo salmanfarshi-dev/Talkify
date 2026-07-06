@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function HomeCard({ icon, tittle, number, status, iconClass, link }) {
   return (
-    <div className="bg-surface border border-border w-full md:w-100 py-3 md:py-6 px-3 md:px-6 shadow-[0px_0px_10px_rgba(0,0,0,0.2)] rounded-2xl md:rounded-3xl">
+    <div className="bg-surface border border-border w-full md:w-90 py-3 md:py-6 px-3 md:px-6 shadow-[0px_0px_10px_rgba(255,255,255,0.2)] rounded-2xl md:rounded-3xl">
       <div className="flex justify-between items-center">
         <div className="flex gap-x-3 md:gap-x-6 items-center">
           <div

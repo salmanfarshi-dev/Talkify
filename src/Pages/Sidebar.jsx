@@ -44,30 +44,7 @@ function Sidebar() {
             return (
               <Link key={index} to={`/${item.path}`}>
                 <li
-                  className={`
-            relative flex items-center
-            text-4xl cursor-pointer duration-300
-            z-10
-            after:absolute
-            after:top-1/2
-            after:-translate-y-1/2
-            after:-left-5
-            after:w-32
-            after:h-16
-            after:rounded-l-xl
-            after:content-['']
-            after:-z-10
-
-            before:absolute
-            before:top-1/2
-            before:-translate-y-1/2
-            before:-right-20
-            before:w-3
-            before:h-16
-            before:rounded-l
-            before:content-['']
-            before:z-40
-           
+                  className={`list
 
             ${
               active === item.path
@@ -89,9 +66,11 @@ function Sidebar() {
           })}
         </ul>
 
+       <Link to="logout">
         <div className="text-text-primary text-4xl cursor-pointer hover:scale-110 duration-300">
           <HiOutlineLogout />
         </div>
+       </Link>
       </aside>
 
       <aside className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] bg-surface border border-border rounded-full shadow-2xl px-6 py-4 flex justify-between items-center md:hidden z-50">

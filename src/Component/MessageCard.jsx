@@ -18,8 +18,8 @@ function MessageCard({id, setSelectedChat}) {
 
 
   return (
-    <div onClick={handleClick} className='hover:bg-secondary duration-300 cursor-pointer rounded-[10px] py-3 px-2 '>
-        <div className="flex items-center gap-x-2">
+    <div onClick={handleClick} className='hover:bg-secondary duration-300 cursor-pointer rounded-[10px] py-3 px-2 border-b border-border'>
+        <div className="flex items-center gap-x-2 ">
             <div className="w-14 h-14 rounded-full overflow-hidden">
                 <img src={Image} alt="" className='w-full h-full object-cover'/>
             </div>

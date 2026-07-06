@@ -7,12 +7,12 @@ import { ImBlocked } from "react-icons/im";
 
 function Home() {
   return (
-    <section className=" mb-32 md:mb-0 px-4 ">
+    <section className=" mb-32 md:mb-0 px-4 max-w-330">
       <div className="mb-8 mt-5 relative w-full md:w-72">
         <Input
           aria-label="Search"
           placeholder="Search here..."
-          className="w-full md:w-72 py-3 rounded-full shadow-[0px_0px_10px_rgba(255,255,255,0.1)] pr-10 bg-surface"
+          className="w-full md:w-72 py-3 rounded-full shadow-[0px_0px_10px_rgba(255,255,255,0.1)] pr-10 bg-surface text-white"
         />
 
         <IoSearch className="absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 text-xl" />
