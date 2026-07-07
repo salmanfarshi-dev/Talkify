@@ -22,12 +22,7 @@ function Notification() {
 
       <div className="w-full bg-surface px-4 py-8 rounded-2xl flex flex-col gap-y-4 h-[83vh] overflow-y-auto scrollbar-none">
 
-    <NotificationCard/>
-    <NotificationCard/>
-    <NotificationCard/>
-    <NotificationCard/>
-    <NotificationCard/>
-    <NotificationCard/>
+   
     <NotificationCard/>
     <NotificationCard/>
     <NotificationCard/>
