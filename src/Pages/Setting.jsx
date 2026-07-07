@@ -26,14 +26,14 @@ function Setting() {
         <IoSearch className="absolute top-1/2 -translate-y-1/2 right-4 text-gray-400 text-xl" />
       </div>
 
-      <div className="flex gap-x-10">
-        <div className="bg-surface px-6 py-10 w-[50%] h-[80vh] rounded-[20px] shadow-[2px_5px_10px_rgba(255,255,255,0.2)] ">
-          <p className="text-[16px] md:text-xl font-medium text-text-primary ">
+      <div className="flex gap-x-4 md:gap-x-10">
+        <div className="bg-surface overflow-hidden px-2 md:px-6 py-3 md:py-10 w-[50%] h-[80vh] rounded-[20px] shadow-[2px_5px_10px_rgba(255,255,255,0.2)] ">
+          <p className="text-sm md:text-[16px] md:text-xl mt-3 font-medium text-text-primary">
             Profile Settings
           </p>
 
-          <div className="mt-10 flex items-center gap-x-4 border-b border-border pb-5">
-            <div className="w-16 h-16 rounded-full overflow-hidden">
+          <div className="mt-10 flex md:items-center gap-x-4 border-b border-border pb-5">
+            <div className="w-10 md:w-16 h-10 md:h-16 rounded-full overflow-hidden">
               <img
                 src={Image}
                 alt="Profile image"
@@ -41,57 +41,57 @@ function Setting() {
               />
             </div>
             <div className="flex flex-col">
-              <h3 className="text-2xl font-semibold text-text-primary font-nunito tracking-[2%]">
+              <h3 className="text-[16px] md:text-2xl font-semibold text-text-primary font-nunito tracking-[2%]">
                 Salman Farshi
               </h3>
-              <p className="text-sm font-normal text-text-secondary">
+              <p className=" md:text-sm font-normal text-text-secondary">
                 Stray home stay safe
               </p>
             </div>
           </div>
-          <div className="px-7 mt-8 flex flex-col gap-y-8">
-            <div className="flex items-center gap-x-6 cursor-pointer">
+          <div className="px-2 md:px-7 mt-4 md:mt-8 flex flex-col md:gap-y-8 gap-y-3">
+            <div className="flex items-center gap-x-3 md:gap-x-6 cursor-pointer">
             <RiEdit2Fill className="text-xl text-text-secondary"/>
-            <p className="text-text-secondary text-[16px] font-normal tracking-wider font-sans">Edit Profile Name.</p>
+            <p className="text-text-secondary text-xs md:text-[16px] font-normal tracking-wider font-sans">Edit Profile Name.</p>
 
             </div>
-            <div className="flex items-center gap-x-6 cursor-pointer">
+            <div className="flex items-center gap-x-3 md:gap-x-6 cursor-pointer">
             <BiSolidMessageRoundedDots  className="text-xl text-text-secondary"/>
-            <p className="text-text-secondary text-[16px] font-normal tracking-wider font-sans">Edit Profile Status Info.</p>
+            <p className="text-text-secondary text-xs md:text-[16px] font-normal tracking-wider font-sans">Edit Profile Status Info.</p>
 
             </div>
-            <div className="flex items-center gap-x-6 cursor-pointer">
+            <div className="flex items-center gap-x-3 md:gap-x-6 cursor-pointer">
             <RiImageAiFill  className="text-xl text-text-secondary"/>
-            <p className="text-text-secondary text-[16px] font-normal tracking-wider font-sans">Edit Profile Photo.</p>
+            <p className="text-text-secondary text-xs md:text-[16px] font-normal tracking-wider font-sans">Edit Profile Photo.</p>
 
             </div>
-            <div className="flex items-center gap-x-6 cursor-pointer">
+            <div className="flex items-center gap-x-3 md:gap-x-6 cursor-pointer">
             <FiHelpCircle  className="text-xl text-text-secondary"/>
-            <p className="text-text-secondary text-[16px] font-normal tracking-wider font-sans">Help.</p>
+            <p className="text-text-secondary text-xs md:text-[16px] font-normal tracking-wider font-sans">Help.</p>
 
             </div>
           </div>
         </div>
 
-        <div className="bg-surface px-4 py-6 w-[50%] rounded-[20px] h-[80vh] shadow-[2px_5px_10px_rgba(255,255,255,0.2)] ">
+        <div className="bg-surface overflow-hidden md:px-4 px-2 py-6 w-[50%] rounded-[20px] h-[80vh] shadow-[2px_5px_10px_rgba(255,255,255,0.2)] ">
 
-           <p className="text-[16px] md:text-xl font-medium text-text-primary ">
+           <p className="text-sm md:text-[16px] md:text-xl font-medium text-text-primary ">
             Account Settings
           </p>
-          <div className="px-7 mt-8 flex flex-col gap-y-5">
-             <div className="flex items-center gap-x-6 cursor-pointer ">
-            <FaKey   className="text-xl text-text-secondary"/>
-            <p className="text-text-secondary text-[16px] font-normal tracking-wider font-sans">Change Password.</p>
+          <div className="px-3 md:px-7 mt-3 md:mt-8 flex flex-col gap-y-3 md:gap-y-5">
+             <div className="flex items-center gap-x-3 md:gap-x-6 cursor-pointer ">
+            <FaKey   className="text-sm md:text-xl text-text-secondary"/>
+            <p className="text-text-secondary text-sm md:text-[16px] font-normal tracking-wider font-sans">Change Password.</p>
 
             </div>
-             <div className="flex items-center gap-x-6 cursor-pointer">
-            <VscColorMode   className="text-xl text-text-secondary"/>
-            <p className="text-text-secondary text-[16px] font-normal tracking-wider font-sans">Theme.</p>
+             <div className="flex items-center gap-x-3 md:gap-x-6  cursor-pointer">
+            <VscColorMode   className="text-sm md:text-xl text-text-secondary"/>
+            <p className="text-text-secondary text-sm md:text-[16px] font-normal tracking-wider font-sans">Theme.</p>
 
             </div>
-             <div className="flex items-center gap-x-6 cursor-pointer">
-            <RiDeleteBin5Fill   className="text-xl text-text-secondary"/>
-            <p className="text-text-secondary text-[16px] font-normal tracking-wider font-sans">Delete Account</p>
+             <div className="flex items-center gap-x-3 md:gap-x-6  cursor-pointer">
+            <RiDeleteBin5Fill   className="text-sm md:text-xl text-text-secondary"/>
+            <p className="text-text-secondary text-sm md:text-[16px] font-normal tracking-wider font-sans">Delete Account</p>
 
             </div>
           </div>

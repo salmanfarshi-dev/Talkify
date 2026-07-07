@@ -19,7 +19,7 @@ function Request() {
 
         <div className=" bg-surface  rounded-xl">
           <h5 className="text-2xl font-semibold pl-4 pt-5">Friend Request</h5>
-          <div className=" mt-3 md:mt-5 flex flex-col w-full h-[75vh] overflow-y-auto scrollbar-none">
+          <div className=" mt-3 md:mt-5 flex flex-col w-full overflow-hidden h-[75vh] overflow-y-auto scrollbar-none">
 
          <RequestAcceptCard/>
          <RequestAcceptCard/>
