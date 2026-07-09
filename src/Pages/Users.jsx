@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import RequestCard from "../Component/RequestCard";
 import { Input } from "@heroui/react";
 import { IoSearch } from "react-icons/io5";
+import { getDatabase, ref, onValue } from "firebase/database";
 
 function Users() {
+  const db = getDatabase();
+  let [array, setArray] = useState([]);
+
+  useEffect(() => {
+    const starCountRef = ref(db, "userlist/");
+    let arr = [];
+    onValue(starCountRef, (snapshot) => {
+      snapshot.forEach((item) => {
+        arr.push(item.val());
+      });
+        setArray(arr)
+    });
+  }, []);
+
   return (
     <>
       <div className="md:w-200 mx-auto w-full">
@@ -20,21 +35,9 @@ function Users() {
         <div className=" bg-surface  rounded-xl">
           <h5 className="text-2xl font-semibold pl-4 pt-5">User List</h5>
           <div className=" mt-3 md:mt-5 flex flex-col w-full h-[75vh] overflow-y-auto scrollbar-none">
-
-          <RequestCard />
-          <RequestCard />
-          <RequestCard />
-          <RequestCard />
-          <RequestCard />
-          <RequestCard />
-          <RequestCard />
-          <RequestCard />
-          <RequestCard />
-          <RequestCard />
-          <RequestCard />
-          <RequestCard />
-          <RequestCard />
-          <RequestCard />
+            {array.map((item) => (
+              <RequestCard src={item.profilepic} name={item.username} time="Follow me"/>
+            ))}
           </div>
         </div>
       </div>

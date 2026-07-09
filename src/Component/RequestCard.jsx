@@ -1,25 +1,24 @@
 import React from "react";
-import Image from "../assets/salman.jpeg";
 import Button from "@mui/material/Button";
 
-function RequestCard() {
+function RequestCard({src, name, time}) {
   return (
     <div className="flex justify-between items-center border-b border-border hover:bg-secondary duration-200 px-4 py-6 pb-4">
       <div className="flex gap-x-4 items-center">
         <div className="w-14 h-14 rounded-full overflow-hidden">
           <img
-            src={Image}
+            src={src}
             alt="Profile"
             className="h-full w-full object-cover"
           />
         </div>
         <div className="flex flex-col">
-          <h2 className="text-[16px] md:text-xl font-medium truncate w-30 lg:w-40">
+          <h2 className="capitalize text-[16px] md:text-xl font-medium truncate w-30 lg:w-40">
             {" "}
-            Salman Farshi
+           {name}
           </h2>
           <p className="font-sans text-sm w-30 lg:w-40 truncate md:text-[16px] text-text-secondary">
-          Today, 9:40pm
+          {time}
           </p>
         </div>
       </div>

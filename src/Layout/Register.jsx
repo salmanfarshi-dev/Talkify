@@ -9,14 +9,16 @@ import { VscEyeClosed } from "react-icons/vsc";
 import {
   getAuth,
   createUserWithEmailAndPassword,
-  sendEmailVerification,  
+  sendEmailVerification,
 } from "firebase/auth";
+import { getDatabase, push, ref, set } from "firebase/database";
 import { RotatingLines } from "react-loader-spinner";
 import { toast, ToastContainer } from "react-toastify";
 import { HiOutlineSparkles } from "react-icons/hi";
 
 function Register() {
   const auth = getAuth();
+  const db = getDatabase();
   const navigate = useNavigate();
 
   let [show, setShow] = useState(false);
@@ -86,6 +88,14 @@ function Register() {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           sendEmailVerification(auth.currentUser).then(() => {
+            set(push(ref(db, "userlist/")), {
+              username: name,
+              email: email,
+              profilepic: "https://i.ibb.co.com/kVqPrGGH/avatar.jpg",
+
+             
+            });
+            console.log(data);
             toast.success("Verification email sent!");
           });
 
@@ -111,7 +121,7 @@ function Register() {
         <div className="w-full md:w-1/2 flex justify-center items-center px-5 py-10">
           <div className="w-full max-w-[450px] md:bg-transparent  rounded-[32px] p-6 md:p-10 md:shadow-none  shadow-[0_20px_60px_rgba(0,0,0,0.28)]">
             <div className="w-16 h-16 md:hidden block rounded-2xl bg-secondary/10 flex justify-center items-center mb-6 mx-auto md:mx-0">
-                <HiOutlineSparkles className="text-3xl text-[#248E92]" />
+              <HiOutlineSparkles className="text-3xl text-[#248E92]" />
             </div>
             <Heading text="Get started with easily register" />
             <div className="md:hidden h-2"></div>
@@ -131,8 +141,8 @@ function Register() {
                     width: "100%",
                     "& .MuiOutlinedInput-root": {
                       borderRadius: "16px",
-                     backgroundColor: "",
-                          color:"#11175D",
+                      backgroundColor: "",
+                      color: "#11175D",
                     },
                   }}
                 />
@@ -154,8 +164,8 @@ function Register() {
                     width: "100%",
                     "& .MuiOutlinedInput-root": {
                       borderRadius: "16px",
-                     backgroundColor: "",
-                          color:"#11175D",
+                      backgroundColor: "",
+                      color: "#11175D",
                     },
                   }}
                 />
@@ -176,8 +186,8 @@ function Register() {
                     width: "100%",
                     "& .MuiOutlinedInput-root": {
                       borderRadius: "16px",
-                     backgroundColor: "",
-                          color:"#11175D",
+                      backgroundColor: "",
+                      color: "#11175D",
                     },
                   }}
                 />

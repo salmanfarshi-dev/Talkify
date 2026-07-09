@@ -14,6 +14,7 @@ import {
   GoogleAuthProvider,
   sendPasswordResetEmail,
 } from "firebase/auth";
+import { getDatabase, push, ref, set } from "firebase/database";
 import { toast, ToastContainer } from "react-toastify";
 import { RotatingLines } from "react-loader-spinner";
 import { LuKeyRound } from "react-icons/lu";
@@ -23,7 +24,12 @@ import FacebookLoader from "../Component/FacebookLoader";
 
 function SignIn() {
   const auth = getAuth();
-  const provider = new GoogleAuthProvider();
+  const db = getDatabase();
+  const provider = new GoogleAuthProvider();  
+  provider.setCustomParameters({                
+    prompt: "select_account",
+  });
+  
   const navigate = useNavigate();
   const [loadingScreen, setLoadingScreen] = useState(false);
   let [email, setEmail] = useState("");
@@ -99,18 +105,25 @@ function SignIn() {
   };
 
   const handlegoogle = async () => {
-    try {
-      await signInWithPopup(auth, provider);
+  try {
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user; 
 
-      setLoadingScreen(true);
+    set(push(ref(db, "userlist/")), {
+      username: user.displayName,
+      email: user.email,
+      profilepic: user.photoURL || "https://i.ibb.co.com/kVqPrGGH/avatar.jpg",
+    });
 
-      setTimeout(() => {
-        navigate("/home");
-      }, 1500);
-    } catch (error) {
-      toast.error(error.code);
-    }
-  };
+    setLoadingScreen(true);
+
+    setTimeout(() => {
+      navigate("/home");
+    }, 1500);
+  } catch (error) {
+    toast.error(error.code);
+  }
+};
 
   const handleForgot = () => {
     setPopup(true);
@@ -173,7 +186,6 @@ function SignIn() {
                   {/* Email */}
                   <div>
                     <TextField
-
                       value={email}
                       onChange={handleemail}
                       sx={{
@@ -181,7 +193,7 @@ function SignIn() {
                         "& .MuiOutlinedInput-root": {
                           borderRadius: "16px",
                           backgroundColor: "",
-                          color:"#11175D",
+                          color: "#11175D",
                         },
                       }}
                       label="Email Address"
@@ -202,7 +214,7 @@ function SignIn() {
                         "& .MuiOutlinedInput-root": {
                           borderRadius: "16px",
                           backgroundColor: "",
-                          color:"#11175D",
+                          color: "#11175D",
                         },
                       }}
                       label="Password"
@@ -270,7 +282,7 @@ function SignIn() {
                       sx={{
                         py: 1.8,
                         width: "100%",
-                        color:"white",
+                        color: "white",
                         borderRadius: "16px",
                         textTransform: "none",
                         fontWeight: 600,
@@ -382,10 +394,6 @@ function SignIn() {
         pauseOnHover
         theme="light"
       />
-
-
-
-    
     </section>
   );
 }
