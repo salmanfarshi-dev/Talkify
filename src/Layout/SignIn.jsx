@@ -109,16 +109,20 @@ function SignIn() {
     }
   };
 
-  const handlegoogle = async () => {
+ const handlegoogle = async () => {
   try {
     const result = await signInWithPopup(auth, provider);
-    const user = result.user; 
+    const user = result.user;
 
-    set(push(ref(db, "userlist/")), {
+    const userData = {
       username: user.displayName,
       email: user.email,
       profilepic: user.photoURL || "https://i.ibb.co.com/h19t8xhC/avatar.png",
-    });
+    };
+
+    set(push(ref(db, "userlist/")), userData);
+
+    dispatch(activeuser(userData));
 
     setLoadingScreen(true);
 
