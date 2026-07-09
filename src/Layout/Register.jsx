@@ -91,11 +91,11 @@ function Register() {
             set(push(ref(db, "userlist/")), {
               username: name,
               email: email,
-              profilepic: "https://i.ibb.co.com/kVqPrGGH/avatar.jpg",
+              profilepic: "https://i.ibb.co.com/h19t8xhC/avatar.png",
 
              
             });
-            console.log(data);
+        
             toast.success("Verification email sent!");
           });
 

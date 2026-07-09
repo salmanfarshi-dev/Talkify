@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import image from "../assets/salman.jpeg";
 import { GrHome } from "react-icons/gr";
 import { AiOutlineMessage } from "react-icons/ai";
@@ -6,6 +6,8 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { LuSettings } from "react-icons/lu";
 import { HiOutlineLogout } from "react-icons/hi";
 import { Link, useLocation } from "react-router-dom";
+import { getDatabase, ref, onValue } from "firebase/database";
+import { useSelector } from "react-redux";
 
 const menu = [
   {
@@ -27,15 +29,44 @@ const menu = [
 ];
 
 function Sidebar() {
+  let [array, setArray] = useState([]);
+
+  const db = getDatabase();
+  let data = useSelector((state) => state.activeuser.value);
+
   const location = useLocation();
   const active = location.pathname.replace("/", "");
+
+useEffect(() => {
+  if (!data) return;
+
+  const starCountRef = ref(db, "userlist/");
+
+  onValue(starCountRef, (snapshot) => {
+    let arr = [];
+
+    snapshot.forEach((item) => {
+      if (item.val().email === data.email) {
+        arr.push(item.val());
+      }
+    });
+
+    setArray(arr);
+  });
+}, [data]);
 
   return (
     <>
       <aside className="hidden md:flex fixed left-4 top-3 w-46.5 h-[97vh] bg-surface border border-border rounded-3xl flex-col justify-between items-center py-4 overflow-hidden">
-        <div className="w-28 h-28 rounded-full overflow-hidden">
-          <img src={image} alt="" className="w-full h-full object-cover" />
-        </div>
+        {array.map((item) => (
+          <div className="w-28 h-28 rounded-full overflow-hidden"  key={item.email}>
+            <img
+              src={item.profilepic}
+              alt=""
+              className="w-full h-full object-cover"
+            />
+          </div>
+        ))}
 
         <ul className="flex flex-col gap-y-10">
           {menu.map((item, index) => {
@@ -66,11 +97,11 @@ function Sidebar() {
           })}
         </ul>
 
-       <Link to="logout">
-        <div className="text-text-primary text-4xl cursor-pointer hover:scale-110 duration-300">
-          <HiOutlineLogout />
-        </div>
-       </Link>
+        <Link to="logout">
+          <div className="text-text-primary text-4xl cursor-pointer hover:scale-110 duration-300">
+            <HiOutlineLogout />
+          </div>
+        </Link>
       </aside>
 
       <aside className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] bg-surface border border-border rounded-full shadow-2xl px-6 py-4 flex justify-between items-center md:hidden z-50">

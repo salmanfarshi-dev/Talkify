@@ -3,11 +3,15 @@ import RequestCard from "../Component/RequestCard";
 import { Input } from "@heroui/react";
 import { IoSearch } from "react-icons/io5";
 import { getDatabase, ref, onValue } from "firebase/database";
+import { useSelector } from "react-redux";
 
 function Users() {
   const db = getDatabase();
   let [array, setArray] = useState([]);
+  let data = useSelector(state=>state.activeuser.value)
 
+
+  
   useEffect(() => {
     const starCountRef = ref(db, "userlist/");
     let arr = [];

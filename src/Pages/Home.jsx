@@ -1,11 +1,50 @@
-import React from "react";
+
 import HomeCard from "../Component/HomeCard";
 import { FaUserGroup } from "react-icons/fa6";
 import { Input } from "@heroui/react";
 import { IoSearch } from "react-icons/io5";
 import { ImBlocked } from "react-icons/im";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { getDatabase, ref, onValue } from "firebase/database";
 
 function Home() {
+
+  let [array, setArray] = useState([]);
+const currentUser = array?.[0];
+  const db = getDatabase();
+  let data = useSelector((state) => state.activeuser.value);
+
+
+
+
+
+
+
+
+
+
+
+  useEffect(() => {
+    if (!data) return;
+  
+    const starCountRef = ref(db, "userlist/");
+  
+    onValue(starCountRef, (snapshot) => {
+      let arr = [];
+  
+      snapshot.forEach((item) => {
+        if (item.val().email === data.email) {
+          arr.push(item.val());
+        }
+      });
+  
+      setArray(arr);
+    });
+  }, [data]);
+
+
+
   return (
     <section className=" mb-32 md:mb-0 px-4 max-w-330">
       <div className="mb-8 mt-5 relative w-full md:w-72">
@@ -20,7 +59,7 @@ function Home() {
 
       <div className="mb-8">
         <h1 className="text-xl md:text-2xl font-semibold text-text-primary">
-          Welcome back, Salman Farshi 👋
+          Welcome back, {currentUser?.username}  👋
         </h1>
 
         <p className="text-text-secondary text-sm md:text-base">

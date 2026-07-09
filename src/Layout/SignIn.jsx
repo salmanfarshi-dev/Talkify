@@ -21,6 +21,8 @@ import { LuKeyRound } from "react-icons/lu";
 import { FaFacebook } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 import FacebookLoader from "../Component/FacebookLoader";
+import { useDispatch } from "react-redux";
+import { activeuser } from "../Slices/UserInfoSlice";
 
 function SignIn() {
   const auth = getAuth();
@@ -31,6 +33,7 @@ function SignIn() {
   });
   
   const navigate = useNavigate();
+  let dispatch= useDispatch()
   const [loadingScreen, setLoadingScreen] = useState(false);
   let [email, setEmail] = useState("");
   let [emailreset, setEmailReset] = useState("");
@@ -88,6 +91,8 @@ function SignIn() {
               navigate("/home");
             }, 1500);
 
+            dispatch(activeuser(userCredential.user))
+
             setLoader(false);
           } else {
             toast.error("Please verified your email");
@@ -112,7 +117,7 @@ function SignIn() {
     set(push(ref(db, "userlist/")), {
       username: user.displayName,
       email: user.email,
-      profilepic: user.photoURL || "https://i.ibb.co.com/kVqPrGGH/avatar.jpg",
+      profilepic: user.photoURL || "https://i.ibb.co.com/h19t8xhC/avatar.png",
     });
 
     setLoadingScreen(true);
