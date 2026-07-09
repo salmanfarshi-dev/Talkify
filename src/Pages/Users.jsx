@@ -13,15 +13,20 @@ function Users() {
 
   
   useEffect(() => {
+    if (!data?.email) return;
+    
     const starCountRef = ref(db, "userlist/");
     let arr = [];
     onValue(starCountRef, (snapshot) => {
       snapshot.forEach((item) => {
-        arr.push(item.val());
+        if(item.val().email !== data.email){
+
+          arr.push(item.val());
+        }
       });
         setArray(arr)
     });
-  }, []);
+  }, [data]);
 
   return (
     <>
@@ -40,7 +45,7 @@ function Users() {
           <h5 className="text-2xl font-semibold pl-4 pt-5">User List</h5>
           <div className=" mt-3 md:mt-5 flex flex-col w-full h-[75vh] overflow-y-auto scrollbar-none">
             {array.map((item) => (
-              <RequestCard src={item.profilepic} name={item.username} time="Follow me"/>
+              <RequestCard  key={item.email} src={item.profilepic} name={item.username} time="Follow me"/>
             ))}
           </div>
         </div>
