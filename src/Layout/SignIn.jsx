@@ -92,6 +92,7 @@ function SignIn() {
             }, 1500);
 
             dispatch(activeuser(userCredential.user))
+            localStorage.setItem("userinfo", JSON.stringify(userCredential.user))
 
             setLoader(false);
           } else {
