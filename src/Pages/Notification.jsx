@@ -1,11 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import NotificationCard from '../Component/NotificationCard'
 import { Input } from "@heroui/react";
 import { IoSearch } from "react-icons/io5";
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 
 
 function Notification() {
+
+  let data = useSelector((state) => state.activeuser.value);
+
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    if (data == null) {
+      navigate("/login");
+    }
+  }, [data, navigate]);
+
+
   return (
     <>
     <div className="w-full">

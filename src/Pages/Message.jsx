@@ -1,8 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ChatList from "../Layout/ChatList";
 import Messageing from "./Messageing";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Message() {
+  let data = useSelector((state) => state.activeuser.value);
+
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    if (data == null) {
+      navigate("/login");
+    }
+  }, [data, navigate]);
+
   const [selectedChat, setSelectedChat] = useState(null);
 
   return (

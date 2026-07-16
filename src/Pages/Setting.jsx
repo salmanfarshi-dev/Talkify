@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Input } from "@heroui/react";
 import { IoSearch } from "react-icons/io5";
 import Image from "../assets/salman.jpeg";
@@ -9,11 +9,24 @@ import { FiHelpCircle } from "react-icons/fi";
 import { FaKey } from "react-icons/fa6";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { VscColorMode } from "react-icons/vsc";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 
 
 
 function Setting() {
+
+  let data = useSelector((state) => state.activeuser.value);
+
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    if (data == null) {
+      navigate("/login");
+    }
+  }, [data, navigate]);
+
   return (
     <section>
       <div className="mb-8 mt-5 relative w-full">

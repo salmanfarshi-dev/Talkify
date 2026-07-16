@@ -4,13 +4,22 @@ import { Input } from "@heroui/react";
 import { IoSearch } from "react-icons/io5";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Users() {
   const db = getDatabase();
   let [array, setArray] = useState([]);
-  let data = useSelector(state=>state.activeuser.value)
+  
 
+let data = useSelector((state) => state.activeuser.value);
 
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    if (data == null) {
+      navigate("/login");
+    }
+  }, [data, navigate]);
   
   useEffect(() => {
     if (!data?.email) return;

@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Input } from "@heroui/react";
 import { IoSearch } from "react-icons/io5";
 import RequestAcceptCard from '../Component/RequestAcceptCard';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function Request() {
+
+  let data = useSelector((state) => state.activeuser.value);
+
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    if (data == null) {
+      navigate("/login");
+    }
+  }, [data, navigate]);
+
+
   return (
     <>
       <div className="md:w-200 mx-auto w-full">
