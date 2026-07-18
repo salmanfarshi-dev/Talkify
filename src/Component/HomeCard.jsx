@@ -9,7 +9,7 @@ function HomeCard({ icon, tittle, number, status, iconClass, link }) {
       <div className="flex justify-between items-center">
         <div className="flex gap-x-3 md:gap-x-6 items-center">
           <div
-            className={`bg-[#E0DBFA] flex justify-center items-center rounded-2xl   md:w-12  md:h-12 ${iconClass}`}
+            className={`bg-[#E0DBFA] flex justify-center items-center rounded-2xl w-6 h-6  md:w-12  md:h-12 ${iconClass}`}
           >
             {icon}
           </div>

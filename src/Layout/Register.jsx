@@ -88,14 +88,12 @@ function Register() {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           sendEmailVerification(auth.currentUser).then(() => {
-            set(push(ref(db, "userlist/")), {
+            set(ref(db, "userlist/" + userCredential.user.uid), {
               username: name,
               email: email,
               profilepic: "https://i.ibb.co.com/h19t8xhC/avatar.png",
-
-             
             });
-        
+
             toast.success("Verification email sent!");
           });
 

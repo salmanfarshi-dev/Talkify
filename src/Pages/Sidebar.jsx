@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import image from "../assets/salman.jpeg";
 import { GrHome } from "react-icons/gr";
 import { AiOutlineMessage } from "react-icons/ai";
 import { IoMdNotificationsOutline } from "react-icons/io";
@@ -46,7 +45,7 @@ useEffect(() => {
     let arr = [];
 
     snapshot.forEach((item) => {
-      if (item.val().email === data.email) {
+      if (item.key == data.uid) {
         arr.push(item.val());
       }
     });
@@ -125,13 +124,17 @@ useEffect(() => {
           />
         </Link>
 
-        <div className="w-14 h-14 rounded-full bg-text-primary flex justify-center items-center shadow-xl -mt-10">
+       {
+        array.map(item=>(
+           <div key={item.email} className="w-14 h-14 rounded-full bg-text-primary flex justify-center items-center shadow-xl -mt-10">
           <img
-            src={image}
+            src={item.profilepic}
             alt=""
             className="w-12 h-12 rounded-full object-cover"
           />
         </div>
+        ))
+       }
 
         <Link to="/notification">
           <IoMdNotificationsOutline

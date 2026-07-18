@@ -41,7 +41,7 @@ function Home() {
   }, [data]);
 
   return (
-    <section className=" mb-32 md:mb-0 px-4 max-w-330">
+    <section className=" mb-32 md:mb-0  max-w-330">
       <div className="mb-8 mt-5 relative w-full md:w-72">
         <Input
           aria-label="Search"
@@ -53,7 +53,7 @@ function Home() {
       </div>
 
       <div className="mb-8">
-        <h1 className="text-xl md:text-2xl font-semibold text-text-primary">
+        <h1 className="w-full truncate text-xl md:text-2xl font-semibold text-text-primary">
           Welcome back, {currentUser?.username} 👋
         </h1>
 

@@ -9,9 +9,8 @@ import { useNavigate } from "react-router-dom";
 function Users() {
   const db = getDatabase();
   let [array, setArray] = useState([]);
-  
 
-let data = useSelector((state) => state.activeuser.value);
+  let data = useSelector((state) => state.activeuser.value);
 
   let navigate = useNavigate();
 
@@ -20,20 +19,19 @@ let data = useSelector((state) => state.activeuser.value);
       navigate("/login");
     }
   }, [data, navigate]);
-  
+
   useEffect(() => {
     if (!data?.email) return;
-    
+
     const starCountRef = ref(db, "userlist/");
     let arr = [];
     onValue(starCountRef, (snapshot) => {
       snapshot.forEach((item) => {
-        if(item.val().email !== data.email){
-
+        if (item.key != data.uid) {
           arr.push(item.val());
         }
       });
-        setArray(arr)
+      setArray(arr);
     });
   }, [data]);
 
@@ -54,7 +52,12 @@ let data = useSelector((state) => state.activeuser.value);
           <h5 className="text-2xl font-semibold pl-4 pt-5">User List</h5>
           <div className=" mt-3 md:mt-5 flex flex-col w-full h-[75vh] overflow-y-auto scrollbar-none">
             {array.map((item) => (
-              <RequestCard  key={item.email} src={item.profilepic} name={item.username} time="Follow me"/>
+              <RequestCard
+                key={item.email}
+                src={item.profilepic}
+                name={item.username}
+                time="Follow me"
+              />
             ))}
           </div>
         </div>

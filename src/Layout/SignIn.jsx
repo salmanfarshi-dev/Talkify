@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LoginImage from "../assets/login.jpg";
 import Heading from "../Component/Heading";
@@ -14,17 +14,18 @@ import {
   GoogleAuthProvider,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import { getDatabase, push, ref, set } from "firebase/database";
+import { getDatabase, push, ref, set, onValue } from "firebase/database";
 import { toast, ToastContainer } from "react-toastify";
 import { RotatingLines } from "react-loader-spinner";
 import { LuKeyRound } from "react-icons/lu";
 import { FaFacebook } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 import FacebookLoader from "../Component/FacebookLoader";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { activeuser } from "../Slices/UserInfoSlice";
 
 function SignIn() {
+   let [array, setArray] = useState([]);
   const auth = getAuth();
   const db = getDatabase();
   const provider = new GoogleAuthProvider();  
@@ -41,7 +42,7 @@ function SignIn() {
   let [emailerror, setEmailError] = useState("");
   let [passworderror, setPasswordError] = useState("");
   let [loader, setLoader] = useState(false);
-
+  let data = useSelector((state) => state.activeuser.value);
   let [show, setShow] = useState(false);
   let emialregex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -110,20 +111,51 @@ function SignIn() {
     }
   };
 
+
+
+   useEffect(() => {
+    if (!data?.email) return;
+
+    const starCountRef = ref(db, "userlist/");
+    let arr = [];
+    onValue(starCountRef, (snapshot) => {
+      snapshot.forEach((item) => {
+    
+          arr.push(item.val());
+        
+      });
+      setArray(arr);
+    });
+  }, [data]);
+
+
+
  const handlegoogle = async () => {
   try {
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
 
-    const userData = {
-      username: user.displayName,
-      email: user.email,
-      profilepic: user.photoURL || "https://i.ibb.co.com/h19t8xhC/avatar.png",
-    };
+    const existUser = array.find((item) => item.email === user.email);
 
-    set(push(ref(db, "userlist/")), userData);
+    let userData;
+
+    if (existUser) {
+      userData = existUser;
+    } else {
+      userData = {
+        uid: user.uid,
+        username: user.displayName,
+        email: user.email,
+        profilepic:
+          user.photoURL || "https://i.ibb.co/h19t8xhC/avatar.png",
+      };
+
+      await set((ref(db, "userlist/" + result.user.uid)), userData);
+      
+    }
 
     dispatch(activeuser(userData));
+     localStorage.setItem("userinfo", JSON.stringify(userData));
 
     setLoadingScreen(true);
 
@@ -131,7 +163,7 @@ function SignIn() {
       navigate("/home");
     }, 1500);
   } catch (error) {
-    toast.error(error.code);
+    toast.error(error.message);
   }
 };
 
