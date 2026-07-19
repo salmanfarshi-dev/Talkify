@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import RequestCard from "../Component/RequestCard";
 import { Input } from "@heroui/react";
 import { IoSearch } from "react-icons/io5";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue,set } from "firebase/database";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -11,6 +11,7 @@ function Users() {
   let [array, setArray] = useState([]);
 
   let data = useSelector((state) => state.activeuser.value);
+console.log(data);
 
   let navigate = useNavigate();
 
@@ -28,12 +29,24 @@ function Users() {
     onValue(starCountRef, (snapshot) => {
       snapshot.forEach((item) => {
         if (item.key != data.uid) {
-          arr.push(item.val());
+          arr.push({...item.val(), id:item.key});
         }
       });
       setArray(arr);
     });
   }, [data]);
+
+
+const handleAddFriend=(item)=>{
+  set(ref(db, 'friendrequestlist/'), {
+    sendername: data.username,
+    senderid: data.uid,
+    receivername: item.username ,
+    receiverid: item.id,
+  });
+  
+}
+
 
   return (
     <>
@@ -57,6 +70,7 @@ function Users() {
                 src={item.profilepic}
                 name={item.username}
                 time="Follow me"
+                onClick={()=>handleAddFriend(item)}
               />
             ))}
           </div>

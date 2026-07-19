@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@mui/material/Button";
 
-function RequestCard({src, name, time}) {
+function RequestCard({src, name, time, onClick}) {
   return (
     <div className="flex justify-between items-center border-b border-border hover:bg-secondary duration-200 px-4 py-6 pb-4">
       <div className="flex gap-x-4 items-center">
@@ -24,6 +24,7 @@ function RequestCard({src, name, time}) {
       </div>
 
       <Button
+      onClick={onClick}
         sx={{
           backgroundColor: "#2563eb",
           textTransform: "capitalize",
